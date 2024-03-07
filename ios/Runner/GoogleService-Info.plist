@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyATuzGJ5T08yHrMhSu5154nPuHhdURKCY4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>781423071742</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flawlessBeauty</string>
+	<key>PROJECT_ID</key>
+	<string>flawless-beauty-a8b38</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flawless-beauty-a8b38.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:781423071742:ios:4ad53e10f9acad7ee930af</string>
+</dict>
+</plist>
