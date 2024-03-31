@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flawless_beauty/View/NavigationScreen.dart';
-import 'package:flawless_beauty/View/Sign_in.dart';
+import 'package:flawless_beauty/feature/authentication/screens/OnBoarding/onbording.dart';
+import 'package:flawless_beauty/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'firebase_options.dart';
 
@@ -10,7 +11,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp( MyApp());
+  runApp( const MyApp());
+
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -19,14 +22,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flawless Beauty Saloon',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: NavigationScreen(),
+      themeMode: ThemeMode.system,
+      theme: TAppTheme.lightTheme,
+      darkTheme: TAppTheme.darkTheme,
+     // home: NavigationScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
