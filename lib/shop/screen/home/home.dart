@@ -43,11 +43,11 @@ class HomeScreen extends StatelessWidget {
                 /// Appbar  --
                 THomeAppBar(),
 
-                SizedBox(height: TSize.spaceBtwSections),
+                SizedBox(height: TSize.spaceBtwItems),
 
                 /// Search Bar
                 TSearchConatiner(text: 'Search in Store '),
-                SizedBox(height: TSize.spaceBtwSections),
+                SizedBox(height: TSize.spaceBtwItems),
 
                 /// Categories
                 Padding(
@@ -72,11 +72,11 @@ class HomeScreen extends StatelessWidget {
 
             /// Body
             Padding(
-              padding: const EdgeInsets.all(TSize.defaultSpace),
+              padding: const EdgeInsets.all(TSize.defaultSpace/3),
               child: Column(
                 children: [
                   /// Promo Slider
-                  const TPromoSlider(banners: [TImage.facebook, TImage.bannerImage1],),
+                  const TPromoSlider(banners: [TImage.bannerImage1, TImage.bannerImage2,TImage.bannerImage3],),
                   const SizedBox(height: TSize.spaceBtwSections),
 
                   ///Heading

@@ -7,8 +7,10 @@ class TColors{
   TColors._(); // constructor
 
 
-   // App Basic Colors
-  static const Color primary = Color(0xFF4B68FF);// 0xFF HEX DECIMAL OPTICITY OF COLORS
+   // App Basic Colors 0xFF4B68FF
+  static const Color primar1 = Color(0xFFD48011);// 0xFF HEX DECIMAL OPTICITY OF COLORS
+
+  static const Color primary = Color(0xECDE802F);// 0xFF HEX DECIMAL OPTICITY OF COLORS
   static const Color secondary = Color(0xFFFFE24B);
   static const Color accent = Color(0xFFb0c7ff);
 

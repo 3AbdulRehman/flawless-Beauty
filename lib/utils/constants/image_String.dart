@@ -20,8 +20,12 @@ class TImage{
   static const String deliveredEmailIllustration = "assets/images/animation/VerifyEmail.gif";
   static const String successEmailIllustration = "assets/images/animation/VerifyEmail.gif";
 
-  //// Banner Image
-  static const String bannerImage1 = "assets/images/animation/VerifyEmail.gif";
+  //// Banner Image Home
+  static const String bannerImage1 = "assets/images/banner/banner1.png";
+  static const String bannerImage2 = "assets/images/banner/banner2.png";
+  static const String bannerImage3 = "assets/images/banner/banner3.png";
+
+
 
   ///Brands Image in Store
   static const String brand1 = "assets/logos/google.png";

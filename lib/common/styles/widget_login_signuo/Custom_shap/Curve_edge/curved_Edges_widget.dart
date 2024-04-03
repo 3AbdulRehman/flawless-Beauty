@@ -1,5 +1,6 @@
-import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Curve_edge/curved_Edges.dart';
 import 'package:flutter/material.dart';
+
+import 'curves_edges.dart';
 
 
 class TCurveEdgeWidget extends StatelessWidget {

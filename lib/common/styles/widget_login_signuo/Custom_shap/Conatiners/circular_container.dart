@@ -6,9 +6,9 @@ class TCircularContainer extends StatelessWidget {
   const TCircularContainer({
     super.key,
     this.child,
-    this.width = 400,
-    this.height = 400,
-    this.radius = 400,
+    this.width = 380,
+    this.height = 380,
+    this.radius = 380,
     this.margin,
     this.padding = 0,
     this.backgroundColors = TColors.white

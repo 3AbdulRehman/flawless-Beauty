@@ -20,6 +20,7 @@ class TPromoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         CarouselSlider(
           options: CarouselOptions(
