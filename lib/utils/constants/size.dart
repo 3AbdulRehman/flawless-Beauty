@@ -12,6 +12,8 @@ class TSize{
   static const double IconSm = 16.0;
   static const double IconMd = 24.0;
   static const double IconXl = 32.0;
+  static const double IconLg = 32.0;
+
 
   //Font Sizes
   static const double fontSizeSm = 14.0;

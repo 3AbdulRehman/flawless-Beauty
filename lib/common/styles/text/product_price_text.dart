@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TProductPriceText extends StatelessWidget {
   const TProductPriceText({
     super.key,
-    this.currentSign = '\RS',
+    this.currentSign = 'RS',
     required this.price,
     this.maxLines =1,
     this.isLarge = false,

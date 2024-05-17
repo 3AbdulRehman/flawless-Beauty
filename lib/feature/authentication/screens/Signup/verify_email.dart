@@ -1,5 +1,5 @@
-import 'package:flawless_beauty/common/styles/success_screen/success_screen.dart';
-import 'package:flawless_beauty/feature/authentication/screens/login/login.dart';
+import 'package:flawless_beauty/data/repositories/authentication/authentication_repository.dart';
+import 'package:flawless_beauty/feature/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flawless_beauty/utils/constants/text_String.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
@@ -10,17 +10,19 @@ import 'package:get/get.dart';
 import '../../../../utils/constants/size.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key,this.email});
 
+  final String? email;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put( VerifyEmailController());
     return Scaffold(
+      /// the close icon in the app bar is used to logout  the user and redirect them to the login screen.
+      /// this approach is taken to handle scenarios where the user enter the registration process
+      /// if not verified, the app always navigates to the verification screen.
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () => Get.offAll(() => const LoginScreen()),
-              icon: const Icon(CupertinoIcons.clear))
+        actions: [IconButton(onPressed: () => AuthenticationRepository.instance.logout(), icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -45,15 +47,10 @@ class VerifyEmailScreen extends StatelessWidget {
               const SizedBox(
                 height: TSize.spaceBtwItems,
               ),
-              Text('support@flawlesssaloon.com',
-                  style: Theme.of(context).textTheme.labelLarge,
-                  textAlign: TextAlign.center),
-              const SizedBox(
-                height: TSize.spaceBtwItems,
-              ),
-              Text(TTexts.confirmEmailSubTitle,
-                  style: Theme.of(context).textTheme.labelMedium,
-                  textAlign: TextAlign.center),
+              Text(email ?? '', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
+              const SizedBox(height: TSize.spaceBtwItems),
+
+              Text(TTexts.confirmEmailSubTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center),
 
               const SizedBox(height: TSize.spaceBtwSections),
 
@@ -61,15 +58,7 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(
-                            () => SuccessScreen(
-                             image: TImage.successEmailIllustration,
-                              title: TTexts.yourAccountCreated,
-                              subTitle: TTexts.yourAccountCreatedSubTitle,
-                              onPressed: ()=> Get.to(const LoginScreen()),
-
-                        ),
-                    ),
+                    onPressed: () => controller.checkEmailVerificationStatus(),
                     child: const Text(TTexts.tcontinue)),
               ),
               const SizedBox(
@@ -78,7 +67,8 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () {}, child: const Text(TTexts.resendEmail)),
+                    onPressed: () => controller.sendEmailVerification(),
+                    child: const Text(TTexts.resendEmail)),
               ),
             ],
           ),

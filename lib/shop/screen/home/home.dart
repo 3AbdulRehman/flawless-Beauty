@@ -1,27 +1,14 @@
-import 'dart:ffi';
 
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
-import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/circular_container.dart';
 import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/primary_header_Container.dart';
+import 'package:flawless_beauty/shop/screen/all_products/all_products.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_categories.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/promo_slider.dart';
-import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
-import 'package:flawless_beauty/utils/constants/text_String.dart';
-import 'package:flawless_beauty/utils/device/device_utills.dart';
-import 'package:flawless_beauty/utils/helper/help_function.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
-import '../../../common/styles/image/t_rounded_image.dart';
-import '../../../common/styles/image_Text_widget/vertical_image_text.dart';
 import '../../../common/styles/layout/grid_layout.dart';
 import '../../../common/styles/product/product_cards/product_card_vertical.dart';
 import '../../../common/styles/text/section_heading.dart';
@@ -66,9 +53,11 @@ class HomeScreen extends StatelessWidget {
                       THomeCategories(),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: TSize.spaceBtwSections),
               ],
-            )),
+            ),
+            ),
 
             /// Body
             Padding(
@@ -80,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSize.spaceBtwSections),
 
                   ///Heading
-                  TSectionHeading(title: 'Popular Products',onPressed: (){}),
+                  TSectionHeading(title: 'Popular Products',onPressed: ()=> Get.to(()=> const AllProducts())),
                   const SizedBox(height: TSize.spaceBtwItems),
 
                   /// Popular Products

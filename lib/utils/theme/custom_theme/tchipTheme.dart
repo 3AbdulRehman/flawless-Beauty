@@ -1,5 +1,6 @@
 
 
+import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flutter/material.dart';
 
 class TChipTheme{
@@ -9,16 +10,16 @@ class TChipTheme{
 static ChipThemeData lighChipTheme = ChipThemeData(
   disabledColor: Colors.grey.withOpacity(0.4),
   labelStyle: const TextStyle(color: Colors.black),
-  selectedColor: Colors.blue,
+  selectedColor: TColors.primary,
   padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 12),
-  checkmarkColor: Colors.white,
+  checkmarkColor: TColors.white,
 );
 
-  static ChipThemeData darkChipTheme = ChipThemeData(
-    disabledColor: Colors.grey,
-    labelStyle: const TextStyle(color: Colors.white),
-    selectedColor: Colors.blue,
-    padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 12),
-    checkmarkColor: Colors.white,
+  static ChipThemeData darkChipTheme = const ChipThemeData(
+    disabledColor: TColors.darkGrey,
+    labelStyle: TextStyle(color: TColors.white),
+    selectedColor: TColors.primary,
+    padding: EdgeInsets.symmetric(horizontal: 12.0,vertical: 12),
+    checkmarkColor: TColors.white,
   );
 }

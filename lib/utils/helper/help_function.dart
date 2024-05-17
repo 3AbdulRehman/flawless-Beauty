@@ -1,7 +1,6 @@
 
 
 
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +8,9 @@ import 'package:intl/intl.dart';
 
 class THelpFunction{
   static Color? getColor(String value){
-    // Define your product specific  colors here and it will match the attribute Colors and show specific
+    /// Define your product specific  colors here and it will match the attribute Colors and show specific
 
-    if(value =='Green'){
+    if(value == 'Green'){
       return Colors.green;
     }else if(value == 'Green'){
       return Colors.green;

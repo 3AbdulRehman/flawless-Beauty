@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/constant.dart';
-import '../../../utils/constants/image_String.dart';
 import '../../../utils/constants/size.dart';
 import '../../../utils/helper/help_function.dart';
 import '../Rounded_Conatiner/rounded_container.dart';

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../../common/styles/image/t_rounded_image.dart';
 import '../../../../common/styles/widget_login_signuo/Custom_shap/Conatiners/circular_container.dart';
-import '../../../../utils/constants/image_String.dart';
 import '../../../../utils/constants/size.dart';
 
 class TPromoSlider extends StatelessWidget {

@@ -1,4 +1,3 @@
-import 'package:flawless_beauty/feature/authentication/controller%20onboarding/onbording_controller.dart';
 import 'package:flawless_beauty/feature/authentication/screens/OnBoarding/widgets/onbarding_skip.dart';
 import 'package:flawless_beauty/feature/authentication/screens/OnBoarding/widgets/onboarding_dot_navigation.dart';
 import 'package:flawless_beauty/feature/authentication/screens/OnBoarding/widgets/onboarding_page.dart';
@@ -8,11 +7,12 @@ import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flawless_beauty/utils/constants/text_String.dart';
 import 'package:flawless_beauty/utils/device/device_utills.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../controllers/onboarding/onbording_controller.dart';
+
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

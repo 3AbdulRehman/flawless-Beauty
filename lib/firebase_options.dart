@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -66,15 +63,29 @@ class DefaultFirebaseOptions {
     messagingSenderId: '781423071742',
     projectId: 'flawless-beauty-a8b38',
     storageBucket: 'flawless-beauty-a8b38.appspot.com',
+    androidClientId: '781423071742-bg5sqaisv53evdd89ipqgfr1kpfgjt6m.apps.googleusercontent.com',
+    iosClientId: '781423071742-bdda1ggf73q0vs8h9um05l7um9til1cj.apps.googleusercontent.com',
     iosBundleId: 'com.example.flawlessBeauty',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyATuzGJ5T08yHrMhSu5154nPuHhdURKCY4',
-    appId: '1:781423071742:ios:531805f8513ad84de930af',
+    appId: '1:781423071742:ios:4ad53e10f9acad7ee930af',
     messagingSenderId: '781423071742',
     projectId: 'flawless-beauty-a8b38',
     storageBucket: 'flawless-beauty-a8b38.appspot.com',
-    iosBundleId: 'com.example.flawlessBeauty.RunnerTests',
+    androidClientId: '781423071742-bg5sqaisv53evdd89ipqgfr1kpfgjt6m.apps.googleusercontent.com',
+    iosClientId: '781423071742-bdda1ggf73q0vs8h9um05l7um9til1cj.apps.googleusercontent.com',
+    iosBundleId: 'com.example.flawlessBeauty',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyB8SsyzZ39SpZqM83_-UM1YVapwKt1N_l8',
+    appId: '1:781423071742:web:a8be323057b4e1e0e930af',
+    messagingSenderId: '781423071742',
+    projectId: 'flawless-beauty-a8b38',
+    authDomain: 'flawless-beauty-a8b38.firebaseapp.com',
+    storageBucket: 'flawless-beauty-a8b38.appspot.com',
+  );
+
 }

@@ -1,4 +1,6 @@
+import 'package:flawless_beauty/shop/screen/sub_category/sub_categories.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/styles/image_Text_widget/vertical_image_text.dart';
 import '../../../../utils/constants/image_String.dart';
@@ -17,7 +19,7 @@ class THomeCategories extends StatelessWidget {
           itemCount: 6,
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
-            return   TVerticalImageText(image: TImage.facebook,title: 'Facebook', onTap: (){},);
+            return   TVerticalImageText(image: TImage.haircut,title: 'Hair Cut', onTap: ()=> Get.to(()=>const SubCategoriesScreen()),);
 
           }
       ),

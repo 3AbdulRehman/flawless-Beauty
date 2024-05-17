@@ -35,7 +35,7 @@ class TBrandCard extends StatelessWidget {
               child: TCircularImage(image: TImage.brand1,
                 backgroundColor: Colors.transparent,
                 isNetworkImage: false,
-                overlayColor: THelpFunction.isDarkMode(context) ? TColors.white :TColors.black  ,
+                overlayColor: THelpFunction.isDarkMode(context) ? TColors.white :TColors.black,
               ),
             ),
             const SizedBox(height: TSize.spaceBtwItems/2),
@@ -48,7 +48,7 @@ class TBrandCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TBrandTitleWithVerifiedIcon(title: 'Saloon Brand',brandTextSize: TextSizes.large),
+                    const TBrandTitleWithVerifiedIcon(title: 'L`oreal ',brandTextSize: TextSizes.large),
                     Text('256 Products',style: Theme.of(context).textTheme.labelMedium,)
 
                   ],

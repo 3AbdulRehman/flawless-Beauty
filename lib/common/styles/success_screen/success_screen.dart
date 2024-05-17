@@ -30,8 +30,6 @@ class SuccessScreen extends StatelessWidget {
               // Title
               Text(title, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center),
               const SizedBox(height: TSize.spaceBtwItems,),
-              Text('support@flawlesssaloon.com', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
-              const SizedBox(height: TSize.spaceBtwItems,),
               Text(subTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center),
 
               const SizedBox(height: TSize.spaceBtwSections),

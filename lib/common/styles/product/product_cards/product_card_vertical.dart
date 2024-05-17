@@ -1,12 +1,12 @@
 import 'package:flawless_beauty/common/styles/image/t_rounded_image.dart';
+import 'package:flawless_beauty/shop/screen/product_details/product_detail.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
-import 'package:flawless_beauty/utils/constants/enum.dart';
 import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../Rounded_Conatiner/rounded_container.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../shadows.dart';
@@ -23,7 +23,7 @@ class TProductCardVertical extends StatelessWidget {
 
     /// Container with side Padding , Color , Edge , Radius and shadow
     return GestureDetector(
-      onTap: () {},
+      onTap: ()=> Get.to(()=> const ProductDetailScreen()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -42,8 +42,7 @@ class TProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   /// Thumbnail image
-                  const TRoundedImage(
-                      imageUrl: TImage.google, applyImageRadius: true),
+                  const TRoundedImage(imageUrl: TImage.productImage1, applyImageRadius: true),
 
                   ///Scale Tage
                   Positioned(
@@ -73,16 +72,20 @@ class TProductCardVertical extends StatelessWidget {
 
             /// Details
             const Padding(
-              padding: EdgeInsets.only(left: TSize.sm),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProductTitleText(title: 'google logo icon demy', smallSize: true),
-                  SizedBox(height: TSize.spaceBtwItems /2),
+              padding: EdgeInsets.symmetric(horizontal: TSize.sm),
+              /// only Reason to use the [SizeBox] here is to make Colum full Width
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProductTitleText(title: 'google logo icon ', smallSize: true),
+                    SizedBox(height: TSize.spaceBtwItems /2),
 
-                  TBrandTitleWithVerifiedIcon(title: 'google',),
+                    TBrandTitleWithVerifiedIcon(title: 'google',),
 
-                ],
+                  ],
+                ),
               ),
             ),
             /// Todo : Add Spacer() here to keep Height of each Box same in case 1 or 2 line of Heading
@@ -103,9 +106,9 @@ class TProductCardVertical extends StatelessWidget {
                       color: TColors.dark,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(TSize.cardRadiusMd),
-                        bottomRight:
-                        Radius.circular(TSize.productImageRadius),
-                      )),
+                        bottomRight: Radius.circular(TSize.productImageRadius),
+                      ),
+                  ),
                   child: const SizedBox(
                     width: TSize.IconXl * 1.2,
                     height: TSize.IconXl * 1.2,

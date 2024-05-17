@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/constant.dart';
 import '../../../utils/constants/size.dart';
 
 class TRoundedImage extends StatelessWidget {

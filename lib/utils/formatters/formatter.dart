@@ -10,7 +10,7 @@ class TFormatter{
   }
 
   static String FormatCurrency(double amount){
-    return NumberFormat.currency(locale: 'en_Pk',symbol: '\RS').format(amount); /// customize Currency local and symbol
+    return NumberFormat.currency(locale: 'en_Pk',symbol: 'RS').format(amount); /// customize Currency local and symbol
   }
 
   /// change into pakistani formate

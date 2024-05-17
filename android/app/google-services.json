@@ -12,7 +12,20 @@
           "package_name": "com.ecomile.flawless_beauty"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "781423071742-bg5sqaisv53evdd89ipqgfr1kpfgjt6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecomile.flawless_beauty",
+            "certificate_hash": "2fc817391829ecc4dc5505f89e36bc8b03c7b53a"
+          }
+        },
+        {
+          "client_id": "781423071742-et71up39i0klnss84fg4t4d6scd5k1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAGu3nyZHmNvQ7LE5XMZYncJnGAXg1fsec"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781423071742-et71up39i0klnss84fg4t4d6scd5k1l5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "781423071742-bdda1ggf73q0vs8h9um05l7um9til1cj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flawlessBeauty"
+              }
+            }
+          ]
         }
       }
     }

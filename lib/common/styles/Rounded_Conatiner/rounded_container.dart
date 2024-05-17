@@ -30,6 +30,7 @@ class TRoundedContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      padding: padding,
       margin: margin,
       decoration: BoxDecoration(
         color: backgroundColor,

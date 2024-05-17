@@ -19,8 +19,9 @@ class TCategoryTab extends StatelessWidget {
           child: Column(
             children: [
               /// ---Brands
-              const TBrandShowCase(images: [TImage.facebook, TImage.google, TImage.bannerImage2],),
-              const TBrandShowCase(images: [TImage.facebook, TImage.google, TImage.bannerImage2],),
+              const TBrandShowCase(images: [TImage.productImage1, TImage.productImage2, TImage.productImage3],),
+              const TBrandShowCase(images: [TImage.productImage1, TImage.productImage2, TImage.productImage3],),
+
 
 
               const SizedBox(height: TSize.spaceBtwItems),

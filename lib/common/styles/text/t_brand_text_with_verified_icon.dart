@@ -7,7 +7,7 @@ import '../../../utils/constants/enum.dart';
 import '../../../utils/constants/size.dart';
 
 class TBrandTitleWithVerifiedIcon extends StatelessWidget {
-  const TBrandTitleWithVerifiedIcon({
+  const  TBrandTitleWithVerifiedIcon({
     super.key,
     required this.title,
     this.maxLines =1,

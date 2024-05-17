@@ -34,7 +34,11 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  #Iconss
   cupertino_icons: ^1.0.2
+  iconsax: ^0.0.8
+
+#Firebase
   firebase_core: ^2.25.4
   cloud_firestore: ^4.15.5
   firebase_auth: ^4.17.4
@@ -49,11 +53,25 @@ dependencies:
   http: ^1.2.0
   intl: ^0.19.0
   logger: ^2.1.0
+  lottie: ^3.1.0
+  shimmer: ^3.0.0
+  image_picker: ^1.1.1
   url_launcher: ^6.2.5
+  connectivity_plus: ^6.0.3
   flutter_native_splash: ^2.3.10
   smooth_page_indicator: ^1.1.0
-  iconsax: ^0.0.8
+
+
+  #Product Specific
   carousel_slider: ^4.2.1
+  readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
+  flutter_svg: ^2.0.10+1
+  firebase_storage: ^11.7.5
+  cached_network_image: ^3.3.1
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -81,9 +99,14 @@ flutter:
   assets:
     - assets/images/on_boarding_image/
     - assets/images/banner/
+    - assets/images/brands/
+    - assets/images/products/
     - assets/images/animation/
     - assets/icons/
+    - assets/icons/payment_methods/
     - assets/logos/
+    - assets/images/user/
+    - assets/images/sub_categories/haircutting/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

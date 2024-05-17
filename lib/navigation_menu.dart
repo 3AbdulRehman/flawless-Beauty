@@ -1,5 +1,7 @@
+import 'package:flawless_beauty/personalization/screens/settings/settings.dart';
 import 'package:flawless_beauty/shop/screen/home/home.dart';
-import 'package:flawless_beauty/shop/screen/store/Store.dart';
+import 'package:flawless_beauty/shop/screen/store/store.dart';
+import 'package:flawless_beauty/shop/screen/wishlist/wishlist.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class NavigationMenu extends StatelessWidget {
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(icon: Icon(Iconsax.calendar), label: 'Calender'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Shop'),
+            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
             NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
@@ -44,8 +46,9 @@ class NavigaitonController extends GetxController{
      const HomeScreen(),
     Container(color: Colors.yellow,),
     const Store(),
-    Container(color: Colors.greenAccent,),
-    Container(color: Colors.purple,),
+    const FavoriteScreen(),
+    const SettingsScreen(),
+
 
   ];
 }

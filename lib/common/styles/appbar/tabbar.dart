@@ -2,7 +2,6 @@ import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/device/device_utills.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TTabBar extends StatelessWidget implements PreferredSizeWidget {
   /// if You  want to add the Background Color to tab You have to wrap them in Material Widget.
