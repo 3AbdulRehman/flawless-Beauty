@@ -3,6 +3,7 @@ import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
 import 'package:flawless_beauty/common/styles/icons/t_circular_icon.dart';
 import 'package:flawless_beauty/common/styles/layout/grid_layout.dart';
 import 'package:flawless_beauty/common/styles/product/product_cards/product_card_vertical.dart';
+import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/screen/home/home.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class FavoriteScreen extends StatelessWidget {
             padding: const EdgeInsets.all(TSize.defaultSpace),
           child: Column(
             children: [
-              TGridLayout(itemCount: 6, itemBuilder: (_,index)=>const TProductCardVertical())
+              TGridLayout(itemCount: 6, itemBuilder: (_,index)=> TProductCardVertical(product: ProductModel.empty(),))
             ],
           ),
         ),

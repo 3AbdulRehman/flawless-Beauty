@@ -5,6 +5,7 @@ import 'package:flawless_beauty/common/styles/layout/grid_layout.dart';
 import 'package:flawless_beauty/common/styles/product/product_cart/cart_menu_icon.dart';
 import 'package:flawless_beauty/common/styles/text/section_heading.dart';
 import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/Search_container.dart';
+import 'package:flawless_beauty/shop/controller/category_controller.dart';
 import 'package:flawless_beauty/shop/screen/brand/all_brands.dart';
 import 'package:flawless_beauty/shop/screen/store/widget/category_tab.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
@@ -22,8 +23,9 @@ class Store extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         /// Appbar
         appBar: TAppBar(
@@ -71,21 +73,25 @@ class Store extends StatelessWidget {
                 ),
               ),
               /// Tabs
-              bottom: const TTabBar(
+              bottom:  TTabBar(tabs: categories.map((category)=> Tab(child: Text(category.name))).toList(),
 
-                tabs: [
+
+               /* tabs: [
                   Tab(child: Text("Cosmetic"),),
                   Tab(child: Text("Natural Products"),),
                   Tab(child: Text("Hair shampoo"),),
                   Tab(child: Text("Face Cleaner"),),
                   Tab(child: Text("Sop"),),
-                ],
+                ],*/
               ),
             ),
           ];
         },
             ///Body
-            body:   const TabBarView(
+            body: TabBarView(
+              children: categories.map((category) => TCategoryTab(category: category,)).toList()
+            )
+               /*const TabBarView(
                 children: [
                   TCategoryTab(),
                   TCategoryTab(),
@@ -93,7 +99,7 @@ class Store extends StatelessWidget {
                   TCategoryTab(),
                   TCategoryTab(),
                 ]
-            ),
+            ),*/
         ),
       ),
     );

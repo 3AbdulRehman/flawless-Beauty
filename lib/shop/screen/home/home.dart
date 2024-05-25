@@ -1,10 +1,11 @@
 
+import 'package:flawless_beauty/common/styles/shimmers/vertical_product_shimmer.dart';
 import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/primary_header_Container.dart';
+import 'package:flawless_beauty/shop/controller/product_controller.dart';
 import 'package:flawless_beauty/shop/screen/all_products/all_products.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_categories.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/promo_slider.dart';
-import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -42,10 +44,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       /// Heading
-                      TSectionHeading(
-                          title: 'Popular Categories',
-                          showActionButton: false,
-                          textColor: Colors.white),
+                      TSectionHeading( title: 'Popular Categories', showActionButton: false, textColor: Colors.white),
 
                       SizedBox(height: TSize.spaceBtwItems),
 
@@ -65,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// Promo Slider
-                  const TPromoSlider(banners: [TImage.bannerImage1, TImage.bannerImage2,TImage.bannerImage3],),
+                  const TPromoSlider(),
                   const SizedBox(height: TSize.spaceBtwSections),
 
                   ///Heading
@@ -73,7 +72,13 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSize.spaceBtwItems),
 
                   /// Popular Products
-                  TGridLayout(itemCount: 2, itemBuilder: (_, index) => const TProductCardVertical(),)
+                  Obx((){
+                    // if(controller.isLoading.value) return const TVerticalProductShimmer();
+                    // if(controller.featuredProducts.isEmpty) {
+                    //   return Center(child: Text("No Data Found!",style: Theme.of(context).textTheme.bodyMedium));
+                    // }
+                    return TGridLayout(itemCount: controller.featuredProducts.length, itemBuilder: (_, index) =>  TProductCardVertical(product: controller.featuredProducts[index]),);
+                  })
                 ],
               ),
             )

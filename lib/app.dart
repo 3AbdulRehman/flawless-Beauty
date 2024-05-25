@@ -1,6 +1,7 @@
 
 
 import 'package:flawless_beauty/bindings/general_bindings.dart';
+import 'package:flawless_beauty/routes/app_routes.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
+      getPages: AppRoutes.pages,
       /// Show Loader or Circular Progress Indicator meanwhile Authentication Repository is Deciding to Show relevant Screen
       home: const Scaffold(backgroundColor: TColors.primary,body: Center(child: CircularProgressIndicator(color: Colors.white))),
     );

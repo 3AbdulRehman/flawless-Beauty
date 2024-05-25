@@ -1,4 +1,5 @@
 import 'package:flawless_beauty/common/styles/text/section_heading.dart';
+import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/bottom_add_cart_widget.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/product_attributes.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/product_detail_image_slider.dart';
@@ -13,7 +14,9 @@ import 'package:readmore/readmore.dart';
 
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {

@@ -12,9 +12,10 @@ class OnBordingSkip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: TDeviceUtils.getAppBarHeight(),right: TSize.defaultSpace,
-        child: TextButton(onPressed: ()=>OnBordingController.instance.skipPage(),
-            child: const Text("Skip"))
-    );
+        top: TDeviceUtils.getAppBarHeight(),
+        right: TSize.defaultSpace,
+        child: TextButton(
+            onPressed: () => OnBordingController.instance.skipPage(),
+            child: const Text("Skip")));
   }
 }

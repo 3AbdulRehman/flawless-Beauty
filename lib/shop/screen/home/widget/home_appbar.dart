@@ -1,5 +1,5 @@
 import 'package:flawless_beauty/personalization/controller/user_controller.dart';
-import 'package:flawless_beauty/utils/shimmer_loader/shimmer_loader.dart';
+import 'package:flawless_beauty/common/styles/shimmers/shimmer_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,21 +20,30 @@ class THomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(TTexts.homeAppbarTitle,style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey)),
-          Obx((){
-            if(controller.profileLoading.value){
+          Text(TTexts.homeAppbarTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .apply(color: TColors.grey)),
+          Obx(() {
+            if (controller.profileLoading.value) {
               // Display a Shimmer Loader while user Profile is being loaded
               return const TShimmerEffect(width: 80, height: 15);
-            }else{
-              return Text(controller.user.value.fullName,style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white));
-
+            } else {
+              return Text(controller.user.value.fullName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .apply(color: TColors.white));
             }
-         }),
-
+          }),
         ],
       ),
       action: [
-        TCartCounterIcon(onpressed: (){} ,iconColor: TColors.white,)
+        TCartCounterIcon(
+          onpressed: () {},
+          iconColor: TColors.white,
+        )
       ],
     );
   }
