@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'Appointment/appointment.dart';
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -44,7 +46,7 @@ class NavigaitonController extends GetxController{
 
   final screen = [
      const HomeScreen(),
-    Container(color: Colors.yellow,),
+    const AppointmentScreen(),
     const Store(),
     const FavoriteScreen(),
     const SettingsScreen(),

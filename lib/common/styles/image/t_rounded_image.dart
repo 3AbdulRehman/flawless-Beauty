@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flawless_beauty/common/styles/shimmers/shimmer_loader.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/size.dart';
@@ -37,19 +39,17 @@ class TRoundedImage extends StatelessWidget {
         width: width,
         height: height,
         padding: padding,
-        decoration: BoxDecoration(
-            border: border,
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(TSize.md)),
-        child: ClipRRect(
-            borderRadius: applyImageRadius
-                ? BorderRadius.circular(TSize.md)
-                : BorderRadius.zero,
-            child: Image(
-                fit: fit,
-                image: isNetworkImage
-                    ? NetworkImage(imageUrl)
-                    : AssetImage(imageUrl) as ImageProvider)),
+        decoration: BoxDecoration(border: border, color: backgroundColor, borderRadius: BorderRadius.circular(borderRadius)),
+        child: isNetworkImage
+          ? CachedNetworkImage(
+          fit: fit,
+            imageUrl: imageUrl,
+          progressIndicatorBuilder: (context,url,downloadProgress) => TShimmerEffect(width: width ?? double.infinity, height: height ?? 158),
+        )
+            : Image(
+          fit: fit,
+            image: AssetImage(imageUrl),
+        )
       ),
     );
   }

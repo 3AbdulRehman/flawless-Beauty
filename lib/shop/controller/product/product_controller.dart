@@ -2,7 +2,8 @@ import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/utils/constants/enum.dart';
 import 'package:flawless_beauty/utils/popups/loader.dart';
 import 'package:get/get.dart';
-import '../../data/repositories/product/product_repository.dart';
+
+import '../../../data/repositories/product/product_repository.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();

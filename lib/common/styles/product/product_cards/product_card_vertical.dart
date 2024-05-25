@@ -1,5 +1,4 @@
 import 'package:flawless_beauty/common/styles/image/t_rounded_image.dart';
-import 'package:flawless_beauty/shop/controller/product_controller.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/screen/product_details/product_detail.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
@@ -9,6 +8,7 @@ import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../../../shop/controller/product/product_controller.dart';
 import '../../Rounded_Conatiner/rounded_container.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../shadows.dart';
