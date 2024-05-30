@@ -18,39 +18,40 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigaitonController());
     final darkMode = THelpFunction.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: Obx(
-        ()=> NavigationBar(
-          height: 80,
-          elevation: 0,
-          selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) => controller.selectedIndex.value = index,
-          backgroundColor: darkMode ? TColors.black : TColors.white,
-          indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
-
-          destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.calendar), label: 'Calender'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
-          ],
-
+        bottomNavigationBar: Obx(
+          () => NavigationBar(
+            height: 80,
+            elevation: 0,
+            selectedIndex: controller.selectedIndex.value,
+            onDestinationSelected: (index) =>
+                controller.selectedIndex.value = index,
+            backgroundColor: darkMode ? TColors.black : TColors.white,
+            indicatorColor: darkMode
+                ? TColors.white.withOpacity(0.1)
+                : TColors.black.withOpacity(0.1),
+            destinations: const [
+              NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
+              NavigationDestination(
+                  icon: Icon(Iconsax.calendar), label: 'Appointment',),
+              NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
+              NavigationDestination(
+                  icon: Icon(Iconsax.heart), label: 'WishList'),
+              NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
+            ],
+          ),
         ),
-      ),
-      body: Obx(() =>  controller.screen[controller.selectedIndex.value])
-    );
+        body: Obx(() => controller.screen[controller.selectedIndex.value]));
   }
 }
-class NavigaitonController extends GetxController{
+
+class NavigaitonController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screen = [
-     const HomeScreen(),
+    const HomeScreen(),
     const AppointmentScreen(),
     const Store(),
     const FavoriteScreen(),
     const SettingsScreen(),
-
-
   ];
 }

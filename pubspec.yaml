@@ -60,6 +60,8 @@ dependencies:
   connectivity_plus: ^6.0.3
   flutter_native_splash: ^2.3.10
   smooth_page_indicator: ^1.1.0
+  youtube_player_flutter: ^9.0.1
+
 
 
   #Product Specific
@@ -107,6 +109,7 @@ flutter:
     - assets/logos/
     - assets/images/user/
     - assets/images/sub_categories/haircutting/
+    - assets/appointment/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

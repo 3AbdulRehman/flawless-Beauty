@@ -3,14 +3,14 @@
 class TTexts{
 
 // Onbarding Text
-  static const String onBoardingTitle1 = "Choise Your Product";
+  static const String onBoardingTitle1 = "Choose Your Product";
   static const String onBoardingTitle2 = "Select Payment Methode";
-  static const String onBoardingTitle3 = "Delivery at your door step";
+  static const String onBoardingTitle3 = "Delivery at your Doorstep";
 
   /// onBoarding SubTitle
-  static const String onBoardingSubTitle1 = "Welcome to a world of limites";
-  static const String onBoardingSubTitle2 = "For Seamesless";
-  static const String onBoardingSubTitle3 = "From our door";
+  static const String onBoardingSubTitle1 = "Explore the world of natural radiance with our range of organic beauty products, crafted to rejuvenate your skin and soothe your senses.";
+  static const String onBoardingSubTitle2 = "Choose your preferred payment method to finalize your product selection and proceed to checkout at the beauty Salon.";
+  static const String onBoardingSubTitle3 = "Bringing Glamour Home: Luxury Salon Treatments, Delivered Conveniently to Your Doorstep";
 
 
   static const String loginTitle = 'Welcome to';
