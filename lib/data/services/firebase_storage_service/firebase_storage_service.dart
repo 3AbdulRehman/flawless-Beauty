@@ -54,13 +54,12 @@ Future<String> uploadImageData(String path, Uint8List image, String name)async{
 
 // Upload image on cloud FireStore Storage
 // Return the download URL of the uploaded image.
-Future<String> uploadImageFile(String path,XFile image)async{
+Future<String> uploadImageFile(String path,XFile image) async {
   try{
     final ref = _firebaseStorage.ref(path).child(image.name);
     await ref.putFile(File(image.path));
     final url = await ref.getDownloadURL();
     return url;
-
   }catch (e){
     // Handle Exception gracefully
     if(e is FirebaseException){

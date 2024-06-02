@@ -1,3 +1,4 @@
+import 'package:flawless_beauty/common/styles/image/t_circular_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/constant.dart';
@@ -12,10 +13,12 @@ class TVerticalImageText extends StatelessWidget {
     this.textColor = TColors.white,
     this.backgroundColor,
     this.onTap,
+     this.isNetworkImage = true,
   });
 
   final String image, title;
   final Color textColor;
+  final bool isNetworkImage;
   final Color? backgroundColor;
   final void Function()? onTap;
 
@@ -29,22 +32,13 @@ class TVerticalImageText extends StatelessWidget {
         child: Column(
           children: [
             // Circular Icons
-            Container(
-              width: 56,
-              height: 56,
-              padding: const EdgeInsets.all(TSize.sm),
-              decoration: BoxDecoration(
-                  color:
-                      backgroundColor ?? (dark ? TColors.black : TColors.white),
-                  borderRadius: BorderRadius.circular(100)),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit
-                      .cover,
-                  color: dark ? TColors.light : TColors.dark
-                ),
-              ),
+            TCircularImage(
+                image: image,
+              fit: BoxFit.fitWidth,
+              padding: TSize.sm * 1.4,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundColor,
+              overlayColor: THelpFunction.isDarkMode(context) ? TColors.light : TColors.dark,
             ),
             const SizedBox(height: TSize.spaceBtwItems / 2),
             SizedBox(

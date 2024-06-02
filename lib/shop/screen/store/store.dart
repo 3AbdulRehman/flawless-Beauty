@@ -62,8 +62,7 @@ class Store extends StatelessWidget {
                     const SizedBox(height: TSize.spaceBtwItems /1.5),
 
                   /// Grid Grid
-                  TGridLayout(
-                      itemCount: 4,mainAxisExtent: 80, itemBuilder: (_,index){
+                  TGridLayout( itemCount: 4,mainAxisExtent: 80, itemBuilder: (_,index){
                     return   const TBrandCard(showBorder: false);
 
                   }
@@ -75,14 +74,6 @@ class Store extends StatelessWidget {
               /// Tabs
               bottom:  TTabBar(tabs: categories.map((category)=> Tab(child: Text(category.name))).toList(),
 
-
-               /* tabs: [
-                  Tab(child: Text("Cosmetic"),),
-                  Tab(child: Text("Natural Products"),),
-                  Tab(child: Text("Hair shampoo"),),
-                  Tab(child: Text("Face Cleaner"),),
-                  Tab(child: Text("Sop"),),
-                ],*/
               ),
             ),
           ];
@@ -90,16 +81,8 @@ class Store extends StatelessWidget {
             ///Body
             body: TabBarView(
               children: categories.map((category) => TCategoryTab(category: category,)).toList()
-            )
-               /*const TabBarView(
-                children: [
-                  TCategoryTab(),
-                  TCategoryTab(),
-                  TCategoryTab(),
-                  TCategoryTab(),
-                  TCategoryTab(),
-                ]
-            ),*/
+            ),
+
         ),
       ),
     );

@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/primary_header_Container.dart';
 import 'package:flawless_beauty/shop/screen/all_products/all_products.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
@@ -10,6 +12,7 @@ import 'package:get/get.dart';
 
 import '../../../common/styles/layout/grid_layout.dart';
 import '../../../common/styles/product/product_cards/product_card_vertical.dart';
+import '../../../common/styles/shimmers/vertical_product_shimmer.dart';
 import '../../../common/styles/text/section_heading.dart';
 import '../../../common/styles/widget_login_signuo/Custom_shap/Conatiners/Search_container.dart';
 import '../../controller/product/product_controller.dart';
@@ -72,10 +75,10 @@ class HomeScreen extends StatelessWidget {
 
                   /// Popular Products
                   Obx((){
-                    // if(controller.isLoading.value) return const TVerticalProductShimmer();
-                    // if(controller.featuredProducts.isEmpty) {
-                    //   return Center(child: Text("No Data Found!",style: Theme.of(context).textTheme.bodyMedium));
-                    // }
+                    if(controller.isLoading.value) return  const TVerticalProductShimmer();
+                    if(controller.featuredProducts.isEmpty) {
+                      return Center(child: Text("No Data Found!",style: Theme.of(context).textTheme.bodyMedium));
+                    }
                     return TGridLayout(itemCount: controller.featuredProducts.length, itemBuilder: (_, index) =>  TProductCardVertical(product: controller.featuredProducts[index]),);
                   })
                 ],

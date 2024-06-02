@@ -1,4 +1,5 @@
 import 'package:flawless_beauty/common/styles/image/t_rounded_image.dart';
+import 'package:flawless_beauty/common/styles/text/product_price_text.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/screen/product_details/product_detail.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
@@ -21,11 +22,9 @@ class TProductCardVertical extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-
     final controller = ProductController.instance;
     final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelpFunction.isDarkMode(context);
-
     /// Container with side Padding , Color , Edge , Radius and shadow
     return GestureDetector(
       onTap: ()=> Get.to(()=>  ProductDetailScreen(product: product)),
@@ -58,7 +57,7 @@ class TProductCardVertical extends StatelessWidget {
                       backgroundColor: TColors.secondary.withOpacity(0.8),
                       padding: const EdgeInsets.symmetric(
                           horizontal: TSize.sm, vertical: TSize.xs),
-                      child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                      child: Text(salePercentage.toString(), style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
                     ),
                   ),
 
@@ -88,7 +87,7 @@ class TProductCardVertical extends StatelessWidget {
                     ProductTitleText(title: product.title, smallSize: true),
                     const SizedBox(height: TSize.spaceBtwItems /2),
 
-                    TBrandTitleWithVerifiedIcon(title: product.brand?.name ??''),
+                    TBrandTitleWithVerifiedIcon(title: product.brand!.name),
 
                   ],
                 ),
@@ -109,13 +108,13 @@ class TProductCardVertical extends StatelessWidget {
                         padding: const EdgeInsets.only(left: TSize.sm),
                         child: Text(
                           product.price.toString(),
-                          style: Theme.of(context).textTheme.labelMedium/*!.apply(decoration: TextDecoration.lineThrough),*/
+                          style: Theme.of(context).textTheme.labelSmall!.apply(decoration: TextDecoration.lineThrough),
                           ),
                        ),
-                       /*Padding(
-                           padding: const EdgeInsets.only(left: TSize.sm),
+                       Padding(
+                           padding: const EdgeInsets.only(left: TSize.xs),
                          child: TProductPriceText(price: controller.getProductPrice(product),),
-                       )*/
+                       )
                      ],
                    ),
                  ),

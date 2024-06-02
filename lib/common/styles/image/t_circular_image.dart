@@ -34,8 +34,7 @@ class TCircularImage extends StatelessWidget {
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
         // if image background color is null then switch it to light and dark mode color design
-        color: backgroundColor ??
-            (THelpFunction.isDarkMode(context) ? TColors.black : TColors.white),
+        color: backgroundColor ?? (THelpFunction.isDarkMode(context) ? TColors.black : TColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
       child: ClipRRect(
@@ -46,11 +45,7 @@ class TCircularImage extends StatelessWidget {
                   fit: fit,
                   color: overlayColor,
                   imageUrl: image,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      const TShimmerEffect(
-                    width: 55,
-                    height: 55,
-                    radius: 55,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => const TShimmerEffect(width: 55, height: 55, radius: 55,
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 )

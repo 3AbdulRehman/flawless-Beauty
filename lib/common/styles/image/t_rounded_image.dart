@@ -40,15 +40,19 @@ class TRoundedImage extends StatelessWidget {
         height: height,
         padding: padding,
         decoration: BoxDecoration(border: border, color: backgroundColor, borderRadius: BorderRadius.circular(borderRadius)),
-        child: isNetworkImage
-          ? CachedNetworkImage(
-          fit: fit,
-            imageUrl: imageUrl,
-          progressIndicatorBuilder: (context,url,downloadProgress) => TShimmerEffect(width: width ?? double.infinity, height: height ?? 158),
-        )
-            : Image(
-          fit: fit,
-            image: AssetImage(imageUrl),
+        child: ClipRRect(
+          borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
+          child: isNetworkImage
+            ? CachedNetworkImage(
+            fit: fit,
+              imageUrl: imageUrl,
+            progressIndicatorBuilder: (context,url,downloadProgress) => TShimmerEffect(width: width ?? double.infinity, height: height ?? 158),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          )
+              : Image(
+            fit: fit,
+              image: AssetImage(imageUrl),
+          ),
         )
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -12,6 +13,7 @@ class VideoPlayerScreen extends StatefulWidget {
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late YoutubePlayerController _controller;
+
 
   @override
   void initState() {
@@ -34,14 +36,21 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Video Player')),
-      body: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
-        onReady: () {
-          _controller.play();
-        },
+      //appBar: AppBar(title: Text('Video Player')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          YoutubePlayer(
+            controller: _controller,
+            progressIndicatorColor: TColors.primary,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              _controller.play();
+            },
+          ),
+        ],
       ),
     );
   }
+
 }

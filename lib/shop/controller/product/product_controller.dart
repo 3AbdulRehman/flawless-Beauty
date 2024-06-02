@@ -12,6 +12,7 @@ class ProductController extends GetxController {
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
 
+
   @override
   void onInit() {
     fetchFeaturedProducts();
@@ -62,7 +63,7 @@ class ProductController extends GetxController {
         return largestPrice.toString();
       } else {
         // Otherwise, return a price range
-        return '$smallestPrice - \$$largestPrice';
+        return '$smallestPrice - RS$largestPrice';
       }
     }
   }

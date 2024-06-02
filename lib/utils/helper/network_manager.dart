@@ -20,6 +20,7 @@ class NetworkManager extends GetxController{
   void onInit() {
     super.onInit();
     //_connectivitySubscription =  _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+
   }
 
   /// update the connection status based on changes in connectivity and show  a relevant popup for no internet connection

@@ -7,6 +7,7 @@ import 'package:flawless_beauty/shop/screen/product_details/widget/product_meta_
 import 'package:flawless_beauty/shop/screen/product_details/widget/rating_share_widget.dart';
 import 'package:flawless_beauty/shop/screen/product_reviews/product_reviews.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
+import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -20,6 +21,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelpFunction.isDarkMode(context);
     return   Scaffold(
       bottomNavigationBar: const TBottomAddCart(),
       body: SingleChildScrollView(

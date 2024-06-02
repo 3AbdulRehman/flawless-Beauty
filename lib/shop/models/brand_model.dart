@@ -1,7 +1,5 @@
 
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class BrandModel {
 
   String id;
@@ -16,6 +14,7 @@ class BrandModel {
   static BrandModel empty() => BrandModel(id: '', image: '', name: '', );
 
   /// Convert model to Json Structure so that you can store data in FireStore.
+
   toJson(){
     return {
       'Id' : id,
@@ -32,8 +31,8 @@ class BrandModel {
     if(data.isEmpty) return BrandModel.empty();
     return BrandModel(
         id: data['Id'] ?? '',
-        image: data['Name'] ?? '',
-        name: data['Image'] ?? '',
+        image: data['Image'] ?? '',
+        name: data['Name'] ?? '',
        isFeatured: data['IsFeatured'] ?? false,
       productsCount: int.parse((data['ProductsCount'] ?? 0).toString()),
     );

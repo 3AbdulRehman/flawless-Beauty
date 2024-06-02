@@ -32,10 +32,10 @@ class CategoryModel {
  /// Map json oriented document snapshot from firestore to UserModel   received values from Firestore.
   ///  CategoryModel.fromSnapshot this allow make again Constructor
 
-  factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String,dynamic>> document){
-
+  factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
    if(document.data() != null){
      final data = document.data()!;
+
      // Map Json Record to the our CategoryModel
      return CategoryModel(
          id: document.id,

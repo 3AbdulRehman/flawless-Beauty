@@ -16,9 +16,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = UserController.instance;
+
     return Scaffold(
       appBar: const TAppBar(
-        title: Text('Profile'),
+        title: Text(
+          'Profile',
+        ),
         showBackArrow: true,
       ),
 
@@ -35,15 +38,9 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Obx(
                       () {
-                        final networkImage =
-                            controller.user.value.profilePicture;
-                        final image = networkImage.isNotEmpty
-                            ? networkImage
-                            : TImage.userprofileImage;
-                        return controller.imageUploading.value
-                            ? const TShimmerEffect(
-                                width: 80, height: 80, radius: 80)
-                            : TCircularImage(
+                        final networkImage = controller.user.value.profilePicture;
+                        final image = networkImage.isNotEmpty ? networkImage : TImage.userprofileImage;
+                        return controller.imageUploading.value ? const TShimmerEffect(width: 80, height: 80, radius: 80) : TCircularImage(
                                 image: image,
                                 width: 80,
                                 height: 80,
