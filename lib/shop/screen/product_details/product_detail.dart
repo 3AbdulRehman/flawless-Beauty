@@ -6,6 +6,7 @@ import 'package:flawless_beauty/shop/screen/product_details/widget/product_detai
 import 'package:flawless_beauty/shop/screen/product_details/widget/product_meta_data.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/rating_share_widget.dart';
 import 'package:flawless_beauty/shop/screen/product_reviews/product_reviews.dart';
+import 'package:flawless_beauty/utils/constants/enum.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +40,11 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingAndShare(),
       
                   ///Price , Title , Stock , & Brand
-                  const TProductMetaData(),
+                   TProductMetaData(product: product),
 
                   /// Attributes
-                  const TProductAttribures(),
-                  const SizedBox(height: TSize.spaceBtwSections),
+                 if(product.productType == ProductType.variable.toString())  TProductAttributes(product: product,),
+                  if(product.productType == ProductType.variable.toString()) const SizedBox(height: TSize.spaceBtwSections),
 
                   /// Checkout Button
                   SizedBox(width: double.infinity,child: ElevatedButton(onPressed: (){}, child: const Text('Checkout'))),
@@ -51,14 +52,14 @@ class ProductDetailScreen extends StatelessWidget {
 
                   /// Description
                   const TSectionHeading(title: 'Description',showActionButton: false),
-                  const ReadMoreText(
-                    'This is a Product Description for Saloon Product, There are more Things that can be added but I am just practicing and nothing else',
+                   ReadMoreText(
+                     product.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'less',
-                    moreStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
                   ),
 
                   /// Reviews

@@ -14,7 +14,8 @@ import '../../../../utils/constants/size.dart';
 
 class TProductImageSlider extends StatelessWidget {
   const TProductImageSlider({
-    super.key, required this.product,
+    super.key,
+    required this.product,
   });
 
   final ProductModel product;
@@ -22,7 +23,7 @@ class TProductImageSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ImagesController());
-    final images = controller.getAllProductImages(product) ;
+    final images = controller.getAllProductImages(product);
     final dark = THelpFunction.isDarkMode(context);
 
     return TCurveEdgeWidget(
@@ -31,20 +32,24 @@ class TProductImageSlider extends StatelessWidget {
         child: Stack(
           children: [
             /// Main Large Image
-             SizedBox(
+            SizedBox(
               height: 400,
               child: Padding(
                 padding: const EdgeInsets.all(TSize.productImageRadius * 2),
                 child: Center(
-                    child: Obx((){
-                      final image = controller.selectedProductImage.value;
-                     return GestureDetector(
-                       onTap: ()=>controller.showEnlargedImage(image),
-                       child: CachedNetworkImage(imageUrl: image, progressIndicatorBuilder: (_,__, downloadProgress)=>
-                           CircularProgressIndicator(value: downloadProgress.progress,color: TColors.primary),
-                       ),
-                     );
-                    }),
+                  child: Obx(() {
+                    final image = controller.selectedProductImage.value;
+                    return GestureDetector(
+                      onTap: () => controller.showEnlargedImage(image),
+                      child: CachedNetworkImage(
+                        imageUrl: image,
+                        progressIndicatorBuilder: (_, __, downloadProgress) =>
+                            CircularProgressIndicator(
+                                value: downloadProgress.progress,
+                                color: TColors.primary),
+                      ),
+                    );
+                  }),
                 ),
               ),
             ),
@@ -61,22 +66,27 @@ class TProductImageSlider extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    separatorBuilder: (_, __) => const SizedBox(width: TSize.spaceBtwItems),
-                    itemBuilder: (_, index) => Obx(
-                      (){
-                        final imageSelected = controller.selectedProductImage.value == images[index];
-                        return TRoundedImage(
-                          width: 80,
-                          backgroundColor: dark ? TColors.dark : TColors.white,
-                          border: Border.all(color: imageSelected ? TColors.primary : Colors.transparent),
-                          padding: const EdgeInsets.all(TSize.sm),
-                          isNetworkImage: true,
-                          imageUrl: images[index],
-                          onPressed: ()=> controller.selectedProductImage.value = images[index],
-                        );
-                      }
-                    )
-                ),
+                    separatorBuilder: (_, __) =>
+                        const SizedBox(width: TSize.spaceBtwItems),
+                    itemBuilder: (_, index) => Obx(() {
+                          final imageSelected =
+                              controller.selectedProductImage.value ==
+                                  images[index];
+                          return TRoundedImage(
+                            width: 80,
+                            backgroundColor:
+                                dark ? TColors.dark : TColors.white,
+                            border: Border.all(
+                                color: imageSelected
+                                    ? TColors.primary
+                                    : Colors.transparent),
+                            padding: const EdgeInsets.all(TSize.sm),
+                            isNetworkImage: true,
+                            imageUrl: images[index],
+                            onPressed: () => controller
+                                .selectedProductImage.value = images[index],
+                          );
+                        })),
               ),
             ),
 

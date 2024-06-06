@@ -26,7 +26,7 @@ Future<void> main() async {
   // Todo: Initialize Authentication
 
   // Load all Material Design / Theme / Localization / Binding
-  runApp( MyApp());
+  runApp( const MyApp());
 }
 
 ///// Seperate
