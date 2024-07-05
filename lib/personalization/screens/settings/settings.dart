@@ -1,3 +1,6 @@
+import 'package:flawless_beauty/Appointment/appointment.dart';
+import 'package:flawless_beauty/Appointment/controller/appointment_controller.dart';
+import 'package:flawless_beauty/admin_panel/home/admin_home.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
 import 'package:flawless_beauty/common/styles/list_tile/settings_menu_tile.dart';
 import 'package:flawless_beauty/common/styles/text/section_heading.dart';
@@ -20,6 +23,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AuthenticationRepository());
+    final appcontroller = Get.put(AppointmentController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -71,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.bag_tick,
                       title: 'My Order',
                       subTitle: "In-Progress and Complete Order ",
-                      onTap: () => Get.to(()=>const OrderScreen()),
+                      onTap: () => Get.to(() => const OrderScreen()),
                     ),
                     TSettingsMenuTile(
                       icon: Iconsax.bank,
@@ -107,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.document_upload,
                       title: 'Load Data',
                       subTitle: "Upload Data to your Cloud Firebase",
-                      onTap: () {},
+                      onTap: () => Get.to(const AdminHomeScreen()),
                     ),
                     TSettingsMenuTile(
                         icon: Iconsax.location,
@@ -129,7 +133,7 @@ class SettingsScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                          onPressed: ()=> controller.logout(),
+                          onPressed: () => controller.logout(),
                           child: const Text('Logout')),
                     ),
                     const SizedBox(height: TSize.spaceBtwSections * 2.5),

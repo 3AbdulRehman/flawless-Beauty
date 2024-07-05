@@ -17,32 +17,43 @@ class TPromoSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
-    return  Obx((){
+    return Obx(() {
       // Loader
-      if(controller.isLoading.value) return const TShimmerEffect(width: double.infinity, height: 190);
+      if (controller.isLoading.value)
+        return const TShimmerEffect(width: double.infinity, height: 190);
       // No data Found
-      if(controller.banners.isEmpty){
+      if (controller.banners.isEmpty) {
         return const Center(child: Text('No Data Found!'));
-      }else{
+      } else {
         return Column(
           children: [
             CarouselSlider(
-              options: CarouselOptions(viewportFraction: 1, onPageChanged: (index,_) =>
+              options: CarouselOptions(
+                  viewportFraction: 1,
+                  onPageChanged: (index, _) =>
                       controller.updatePageIndicator(index)),
-              items: controller.banners.map((banner) => TRoundedImage(imageUrl: banner.imageUrl, isNetworkImage: true, onPressed: ()=> Get.toNamed(banner.targetScreen))).toList(),
+              items: controller.banners
+                  .map((banner) => TRoundedImage(
+                        imageUrl: banner.imageUrl,
+                        isNetworkImage: true,
+                      ))
+                  .toList(),
             ),
             const SizedBox(height: TSize.spaceBtwItems),
             Center(
               child: Obx(
-                    () => Row(
+                () => Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     for (int i = 0; i < controller.banners.length; i++)
                       TCircularContainer(
                         width: 20,
                         height: 4,
-                        margin:  const EdgeInsets.only(right: 10),
-                        backgroundColors: controller.carousalCurrentIndex.value == i ? TColors.primary : TColors.grey,
+                        margin: const EdgeInsets.only(right: 10),
+                        backgroundColors:
+                            controller.carousalCurrentIndex.value == i
+                                ? TColors.primary
+                                : TColors.grey,
                       ),
                   ],
                 ),
@@ -50,9 +61,7 @@ class TPromoSlider extends StatelessWidget {
             )
           ],
         );
-
       }
-        }
-    );
+    });
   }
 }

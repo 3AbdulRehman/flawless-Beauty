@@ -1,6 +1,7 @@
 
 import 'package:flawless_beauty/common/styles/Rounded_Conatiner/rounded_container.dart';
 import 'package:flawless_beauty/common/styles/image/t_rounded_image.dart';
+import 'package:flawless_beauty/common/styles/product/favourite_icon/favourite_icon.dart';
 import 'package:flawless_beauty/common/styles/text/product_price_text.dart';
 import 'package:flawless_beauty/common/styles/text/product_title_text.dart';
 import 'package:flawless_beauty/common/styles/text/t_brand_text_with_verified_icon.dart';
@@ -9,15 +10,24 @@ import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../shop/controller/product/product_controller.dart';
+import '../../../../shop/models/product_model.dart';
 import '../../../../utils/constants/constant.dart';
+import '../../../../utils/constants/enum.dart';
 import '../../../../utils/constants/size.dart';
 import '../../icons/t_circular_icon.dart';
 
 class TProductCardHorizental extends StatelessWidget {
-  const TProductCardHorizental({super.key});
+  const TProductCardHorizental({super.key, required this.product});
+
+  final ProductModel product;
+
 
   @override
   Widget build(BuildContext context) {
+
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelpFunction.isDarkMode(context);
     return Container(
       width: 310,
@@ -35,13 +45,14 @@ class TProductCardHorizental extends StatelessWidget {
             backgroundColor: dark ? TColors.dark : TColors.white,
             child:  Stack(
               children: [
-                /// Thumbail Image
-                const SizedBox(
+                /// Thumbnail Image
+                 SizedBox(
                     height: 120,
                     width: 120,
-                    child: TRoundedImage(imageUrl: TImage.hairAsymmetrical, applyImageRadius: true)
+                    child: TRoundedImage(imageUrl: product.thumbnail , applyImageRadius: true, isNetworkImage: true)
                 ),
                 ///Scale Tage
+                if(salePercentage != null)
                 Positioned(
                   top: 12,
                   child: TRoundedContainer(
@@ -49,16 +60,16 @@ class TProductCardHorizental extends StatelessWidget {
                     backgroundColor: TColors.secondary.withOpacity(0.8),
                     padding: const EdgeInsets.symmetric(
                         horizontal: TSize.sm, vertical: TSize.xs),
-                    child: Text('25', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                    child: Text('{$salePercentage}%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
                   ),
                 ),
 
                 //// ./...... Remove this will
                 /// Favorite Icon Button
-                const Positioned(
+                  Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red)
+                    child: TFavouriteIcon(productId: product.id ,)
                 ),
 
               ],
@@ -72,12 +83,12 @@ class TProductCardHorizental extends StatelessWidget {
               padding: const EdgeInsets.only(top: TSize.sm,left: TSize.sm),
               child: Column(
                 children: [
-                  const Column(
+                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProductTitleText(title: "We have Expert Hair Cutter",smallSize: true,),
-                      SizedBox(height: TSize.spaceBtwItems/2),
-                      TBrandTitleWithVerifiedIcon(title: "Flawless"),
+                      ProductTitleText(title: product.title,smallSize: true,),
+                      const SizedBox(height: TSize.spaceBtwItems/2),
+                      TBrandTitleWithVerifiedIcon(title: product.brand!.name),
 
                     ],
                   ),
@@ -86,7 +97,24 @@ class TProductCardHorizental extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Flexible(child: TProductPriceText(price: '450')),
+                       Flexible(
+                          child: Column(
+                            children: [
+                              if(product.productType == ProductType.single.toString() && product.salePrice >0)
+
+                                 Padding(
+                                  padding: const EdgeInsets.only(left: TSize.sm),
+                                  child: Text(product.price.toString(),
+                                    style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+                                  ),
+                                ),
+                              // Padding , Show sale price as main price if sale exist
+                              Padding(
+                                  padding: const EdgeInsets.only(left: TSize.sm),
+                                child: TProductPriceText(price: controller.getProductPrice(product),),
+                              )
+                            ],
+                          )),
 
                       /// Add Cart /// no Need here
                       Container(

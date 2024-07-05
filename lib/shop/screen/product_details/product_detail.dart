@@ -1,4 +1,5 @@
 import 'package:flawless_beauty/common/styles/text/section_heading.dart';
+import 'package:flawless_beauty/shop/controller/product/variation_controller.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/bottom_add_cart_widget.dart';
 import 'package:flawless_beauty/shop/screen/product_details/widget/product_attributes.dart';
@@ -24,7 +25,7 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelpFunction.isDarkMode(context);
     return   Scaffold(
-      bottomNavigationBar: const TBottomAddCart(),
+      bottomNavigationBar:  TBottomAddCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [

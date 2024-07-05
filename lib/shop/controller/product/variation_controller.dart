@@ -1,5 +1,6 @@
 
 
+import 'package:flawless_beauty/shop/controller/product/cart_controller..dart';
 import 'package:flawless_beauty/shop/controller/product/image_controller.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/shop/models/product_variation_model.dart';
@@ -30,6 +31,10 @@ class VariationController extends GetxController{
      ImagesController.instance.selectedProductImage.value = selectedVariation.image;
    }
 
+   if(selectedVariation.id.isNotEmpty){
+     final cartController = CartController.instance;
+     cartController.productQuantityInCart.value = cartController.getVariationQuantityInCart(product.id, selectedVariation.id);
+   }
    // Assign Selected Variation
    this.selectedVariation.value = selectedVariation;
 

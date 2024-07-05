@@ -1,3 +1,4 @@
+import 'package:flawless_beauty/shop/models/brand_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/constant.dart';
@@ -13,9 +14,10 @@ class TBrandCard extends StatelessWidget {
   const TBrandCard({
     super.key,
     required this.showBorder,
-    this.onTap,
+    this.onTap, required this.brand,
   });
 
+  final BrandModel brand;
   final bool showBorder;
   final void Function()? onTap;
 
@@ -32,9 +34,10 @@ class TBrandCard extends StatelessWidget {
           children: [
             ///Icon
             Flexible(
-              child: TCircularImage(image: TImage.brand1,
+              child: TCircularImage(
+                image: brand.image,
                 backgroundColor: Colors.transparent,
-                isNetworkImage: false,
+                isNetworkImage: true,
                 overlayColor: THelpFunction.isDarkMode(context) ? TColors.white :TColors.black,
               ),
             ),
@@ -48,8 +51,8 @@ class TBrandCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TBrandTitleWithVerifiedIcon(title: 'L`oreal ',brandTextSize: TextSizes.large),
-                    Text('256 Products',style: Theme.of(context).textTheme.labelMedium,)
+                     TBrandTitleWithVerifiedIcon(title: brand.name,brandTextSize: TextSizes.large),
+                    Text("${brand.productsCount ?? 0} products",style: Theme.of(context).textTheme.labelMedium,)
 
                   ],
                 )

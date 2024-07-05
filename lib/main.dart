@@ -28,7 +28,6 @@ Future<void> main() async {
   // Load all Material Design / Theme / Localization / Binding
   runApp( const MyApp());
 }
-
 ///// Seperate
 /*
 class MyApp extends StatelessWidget {

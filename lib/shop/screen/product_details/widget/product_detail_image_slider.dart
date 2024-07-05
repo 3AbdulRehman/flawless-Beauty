@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flawless_beauty/common/styles/product/favourite_icon/favourite_icon.dart';
 import 'package:flawless_beauty/shop/controller/product/image_controller.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
@@ -91,13 +92,10 @@ class TProductImageSlider extends StatelessWidget {
             ),
 
             /// App Icons
-            const TAppBar(
+             TAppBar(
               showBackArrow: true,
               action: [
-                TCircularIcon(
-                  icon: Iconsax.heart5,
-                  color: Colors.red,
-                )
+                TFavouriteIcon(productId: product.id)
               ],
             )
           ],

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flawless_beauty/common/styles/widget_login_signuo/Custom_shap/Conatiners/primary_header_Container.dart';
 import 'package:flawless_beauty/shop/screen/all_products/all_products.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
@@ -72,20 +71,19 @@ class HomeScreen extends StatelessWidget {
 
                   ///Heading
                   TSectionHeading(
-                      title: 'Popular Products',
-                      onPressed: () => Get.to(
-                              () =>  AllProducts(
-                                title: 'Popular Products',
-                        //query: FirebaseFirestore.instance.collection('Products').where('IsFeatured',isEqualTo: true).limit(6),
-                        futureModel: controller.fetchAllFeaturedProducts() ,
-                      )
-                      ),
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => AllProducts(
+                          title: 'Popular Products',
+                          //query: FirebaseFirestore.instance.collection('Products').where('IsFeatured',isEqualTo: true).limit(6),
+                          futureModel: controller.fetchAllFeaturedProducts(),
+                        )),
                   ),
                   const SizedBox(height: TSize.spaceBtwItems),
 
                   /// Popular Products
                   Obx(() {
-                    if (controller.isLoading.value) return const TVerticalProductShimmer();
+                    if (controller.isLoading.value)
+                      return const TVerticalProductShimmer();
                     if (controller.featuredProducts.isEmpty) {
                       return Center(
                           child: Text("No Data Found!",

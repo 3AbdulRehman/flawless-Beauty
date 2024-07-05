@@ -1,7 +1,7 @@
+import 'package:flawless_beauty/shop/models/cart_item_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/constant.dart';
-import '../../../../utils/constants/image_String.dart';
 import '../../../../utils/constants/size.dart';
 import '../../../../utils/helper/help_function.dart';
 import '../../image/t_rounded_image.dart';
@@ -11,18 +11,25 @@ import '../../text/t_brand_text_with_verified_icon.dart';
 class TCartItem extends StatelessWidget {
   const TCartItem({
     super.key,
+    required this.cartItem,
   });
+
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         /// Image
-        TRoundedImage(imageUrl: TImage.productImage1,
+        TRoundedImage(
+          imageUrl: cartItem.image ?? '',
           width: 60,
           height: 60,
+          isNetworkImage: true,
           padding: const EdgeInsets.all(TSize.sm),
-          backgroundColor: THelpFunction.isDarkMode(context) ? TColors.darkGrey : TColors.light,
+          backgroundColor: THelpFunction.isDarkMode(context)
+              ? TColors.darkGrey
+              : TColors.light,
         ),
         const SizedBox(width: TSize.spaceBtwItems),
 
@@ -32,22 +39,21 @@ class TCartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TBrandTitleWithVerifiedIcon(title: 'Product'),
-              const Flexible(child: ProductTitleText(title: 'Saloon APP this is my Good Product ',maxLines: 1)),
+              TBrandTitleWithVerifiedIcon(title: cartItem.brandName!),
+              Flexible(
+                  child: ProductTitleText(title: cartItem.title, maxLines: 1)),
 
               /// Attributes
-              Text.rich(
-                  TextSpan(
-                      children: [
-                        TextSpan(text: 'Colors',style: Theme.of(context).textTheme.bodySmall),
-                        TextSpan(text: 'Green',style: Theme.of(context).textTheme.bodyLarge),
-                        TextSpan(text: 'Colors',style: Theme.of(context).textTheme.bodySmall),
-                        TextSpan(text: 'Green',style: Theme.of(context).textTheme.bodyLarge),
-
-                      ]
-                  )
-              )
-
+              Text.rich(TextSpan(
+                  children: (cartItem.selectedVariation ?? {})
+                      .entries
+                      .map((e) => TextSpan(children: [
+                            TextSpan(
+                                text: '${e.key}',
+                                style: Theme.of(context).textTheme.bodyMedium),
+                            TextSpan(text: '${e.key}', style: Theme.of(context).textTheme.bodyMedium),
+                          ]))
+                      .toList()))
             ],
           ),
         )

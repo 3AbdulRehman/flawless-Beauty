@@ -20,11 +20,7 @@ class THomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(TTexts.homeAppbarTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium!
-                  .apply(color: TColors.grey)),
+          Text(TTexts.homeAppbarTitle,style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey)),
           Obx(() {
             if (controller.profileLoading.value) {
               // Display a Shimmer Loader while user Profile is being loaded
@@ -43,6 +39,8 @@ class THomeAppBar extends StatelessWidget {
         TCartCounterIcon(
           onpressed: () {},
           iconColor: TColors.white,
+          counterByColor: TColors.black,
+          counterByTextColor: TColors.white,
         )
       ],
     );

@@ -65,7 +65,7 @@ static const String forgetPasswordTitle = 'Forget Password';
 
 
   /// Home Title
-  static const String homeAppbarTitle = "Welcome to the our";
+  static const String homeAppbarTitle = "Welcome to the ";
   static const String homeAppbarSubTitle = "Flawless Saloon App";
 
 

@@ -8,6 +8,7 @@ import 'package:flawless_beauty/utils/exceptions/firebase_auth_exception.dart';
 import 'package:flawless_beauty/utils/exceptions/firebase_exceptions.dart';
 import 'package:flawless_beauty/utils/exceptions/format_exceptions.dart';
 import 'package:flawless_beauty/utils/exceptions/platform_exceptions.dart';
+import 'package:flawless_beauty/utils/local_storage/storage_utility.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -42,6 +43,10 @@ class AuthenticationRepository extends GetxController {
     if (user != null) {
       // if the user is logged in
       if (user.emailVerified) {
+
+        // Initialize User Specific Storage
+        await TLocalStorage.init(user.uid);
+
         // if the user's Email is  verified, Navigate to the main Navigation Menu
         Get.offAll(() => const NavigationMenu());
       } else {
