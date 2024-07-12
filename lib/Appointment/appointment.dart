@@ -23,7 +23,8 @@ class AppointmentScreen extends StatelessWidget {
 
     final controller = Get.put(AppointmentController());
     return DefaultTabController(
-      length: 4, // Number of tabs
+      initialIndex: controller.selectedTab.value,
+      length: controller.expertNameList.length, // Number of tabs
       child: Scaffold(
         appBar: const TAppBar(
           title: Text('Flawless Salon Appointment'),
@@ -33,69 +34,65 @@ class AppointmentScreen extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                automaticallyImplyLeading: false,
-                pinned: true,
-                floating: true,
-                backgroundColor: THelpFunction.isDarkMode(context)
-                    ? TColors.black
-                    : TColors.white,
-                expandedHeight: 400,
-                flexibleSpace: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12, right: 12),
-                        child: ListView(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            const Divider(),
-                            TSectionHeading(
-                                title: "Expert Videos", onPressed: () {}),
-                            const SizedBox(height: TSize.spaceBtwItems / 2),
-                            Obx(() {
-                              return TGridLayout(
-                                  itemCount: controller.youtubeList.length,
-                                  mainAxisExtent: 70,
-                                  itemBuilder: (_, index) {
-                                    final youtubeCard =
-                                        controller.youtubeList[index];
-                                    return GestureDetector(
-                                        onTap: () {
-                                          controller
-                                              .playVideo(youtubeCard.videoUrl!);
-                                        },
-                                        child: AppointmentYoutubeLink(
-                                            name: youtubeCard.name,
-                                            profession:
-                                                youtubeCard.profession));
-                                  });
-                            })
-                            /////
-                          ],
+                  automaticallyImplyLeading: false,
+                  pinned: true,
+                  floating: true,
+                  backgroundColor: THelpFunction.isDarkMode(context)
+                      ? TColors.black
+                      : TColors.white,
+                  expandedHeight: 400,
+                  flexibleSpace: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          child: ListView(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [
+                              const Divider(),
+                              TSectionHeading(
+                                  title: "Expert Videos", onPressed: () {}),
+                              const SizedBox(height: TSize.spaceBtwItems / 2),
+                              Obx(() {
+                                return TGridLayout(
+                                    itemCount: controller.youtubeList.length,
+                                    mainAxisExtent: 70,
+                                    itemBuilder: (_, index) {
+                                      final youtubeCard =
+                                          controller.youtubeList[index];
+                                      return GestureDetector(
+                                          onTap: () {
+                                            controller.playVideo(
+                                                youtubeCard.videoUrl!);
+                                          },
+                                          child: AppointmentYoutubeLink(
+                                              name: youtubeCard.name!,
+                                              profession:
+                                                  youtubeCard.profession!));
+                                    });
+                              })
+                            ],
+                          ),
                         ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20, right: 10, top: 15),
-                        child: TSectionHeading(
-                          title: "Flawless Salon Expert",
-                          showActionButton: false,
+                        const Padding(
+                          padding:
+                              EdgeInsets.only(left: 20, right: 10, top: 15),
+                          child: TSectionHeading(
+                            title: "Flawless Salon Expert",
+                            showActionButton: false,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                bottom: const TabBarSet(
-                  tabs: [
-                    Tab(text: 'Hair'),
-                    Tab(text: 'Makeup'),
-                    Tab(text: 'Skin'),
-                    Tab(text: 'Eye Brow'),
-                    //
-                    // .Tab(text: 'Waxing'),
-                  ],
-                ),
-              ),
+                  bottom: TabBarSet(
+                    tabs: List.generate(
+                      controller.expertNameList.length,
+                      (index) => Tab(
+                          text: controller.expertNameList[index].expertName),
+                    ),
+                  )),
             ];
           },
           body: Column(
@@ -109,12 +106,12 @@ class AppointmentScreen extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final expert = controller.hairStyleList[index];
                         return ExpertCard(
-                          name: expert.name,
-                          profession: expert.profession,
+                          name: expert.name!,
+                          profession: expert.profession!,
                           rating: expert.ranking!,
                           imagePath: expert.image!,
                           onPressed: () {
-                            showAppointmentDialog(context, expert.name);
+                            showAppointmentDialog(context, expert.name!);
                           },
                         );
                       },
@@ -125,12 +122,12 @@ class AppointmentScreen extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final expert = controller.makeupSyleList[index];
                         return ExpertCard(
-                          name: expert.name,
-                          profession: expert.profession,
+                          name: expert.name!,
+                          profession: expert.profession!,
                           rating: expert.ranking!,
                           imagePath: expert.image!,
                           onPressed: () {
-                            showAppointmentDialog(context, expert.name);
+                            showAppointmentDialog(context, expert.name!);
                           },
                         );
                       },
@@ -141,12 +138,12 @@ class AppointmentScreen extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final expert = controller.skinSpecialist[index];
                         return ExpertCard(
-                          name: expert.name,
-                          profession: expert.profession,
+                          name: expert.name!,
+                          profession: expert.profession!,
                           rating: expert.ranking!,
                           imagePath: expert.image!,
                           onPressed: () {
-                            showAppointmentDialog(context, expert.name);
+                            showAppointmentDialog(context, expert.name!);
                           },
                         );
                       },
@@ -157,12 +154,12 @@ class AppointmentScreen extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final expert = controller.eyebrowSpecialist[index];
                         return ExpertCard(
-                          name: expert.name,
-                          profession: expert.profession,
+                          name: expert.name!,
+                          profession: expert.profession!,
                           rating: expert.ranking!,
                           imagePath: expert.image!,
                           onPressed: () {
-                            showAppointmentDialog(context, expert.name);
+                            showAppointmentDialog(context, expert.name!);
                           },
                         );
                       },
@@ -173,12 +170,12 @@ class AppointmentScreen extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final expert = controller.waxingSpecialist[index];
                         return ExpertCard(
-                          name: expert.name,
-                          profession: expert.profession,
+                          name: expert.name!,
+                          profession: expert.profession!,
                           rating: expert.ranking!,
                           imagePath: expert.image!,
                           onPressed: () {
-                            showAppointmentDialog(context, expert.name);
+                            showAppointmentDialog(context, expert.name!);
                           },
                         );
                       },

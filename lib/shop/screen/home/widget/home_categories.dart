@@ -1,6 +1,7 @@
-import 'package:flawless_beauty/common/styles/shimmers/category_shimmer.dart';
-import 'package:flawless_beauty/shop/controller/category_controller.dart';
-import 'package:flawless_beauty/shop/screen/sub_category/sub_categories.dart';
+import 'package:flawless_beauty/Appointment/appointment_model.dart';
+import 'package:flawless_beauty/Appointment/controller/appointment_controller.dart';
+import 'package:flawless_beauty/navigation_menu.dart';
+import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,33 +14,27 @@ class THomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryController = Get.put(CategoryController());
-
-    return Obx(() {
-      if (categoryController.isLoading.value) return const CategoryShimmer();
-
-      if (categoryController.featuredCategories.isEmpty) {
-        return Center(
-          child: Text("No Data Found!",style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
-          ),
-        );
-      }
-      return SizedBox(
-        height: 80,
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: categoryController.featuredCategories.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (_, index) {
-              final category = categoryController.featuredCategories[index];
-              return TVerticalImageText(
-                image: category.image,
-                title: category.name,
-                onTap: () => Get.to(() =>  SubCategoriesScreen(category: category,),
-                ),
-              );
-            }),
-      );
-    });
+    // final categoryController = Get.put(CategoryController());
+    final controller = Get.put(AppointmentController());
+    final navcontroller = Get.put(NavigaitonController());
+    print(controller.hairStyleList[0].name);
+    return SizedBox(
+      height: 80,
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: controller.expertNameList.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (_, index) {
+            AppointmentModel data = controller.expertNameList[index];
+            return TVerticalImageText(
+                isNetworkImage: false,
+                image: data.image!,
+                title: data.expertName!,
+                onTap: () {
+                  navcontroller.selectedIndex.value = 1;
+                  controller.selectedTab.value = index;
+                });
+          }),
+    );
   }
 }

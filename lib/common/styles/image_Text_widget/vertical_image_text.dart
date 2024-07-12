@@ -13,10 +13,11 @@ class TVerticalImageText extends StatelessWidget {
     this.textColor = TColors.white,
     this.backgroundColor,
     this.onTap,
-     this.isNetworkImage = true,
+    this.isNetworkImage = true,
   });
 
-  final String image, title;
+  final String image;
+  final String title;
   final Color textColor;
   final bool isNetworkImage;
   final Color? backgroundColor;
@@ -33,23 +34,27 @@ class TVerticalImageText extends StatelessWidget {
           children: [
             // Circular Icons
             TCircularImage(
-                image: image,
+              image: image,
               fit: BoxFit.fitWidth,
               padding: TSize.sm * 1.4,
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
-              overlayColor: THelpFunction.isDarkMode(context) ? TColors.light : TColors.dark,
+              overlayColor: THelpFunction.isDarkMode(context)
+                  ? TColors.light
+                  : TColors.dark,
             ),
             const SizedBox(height: TSize.spaceBtwItems / 2),
             SizedBox(
                 width: 55,
-                child: Text(title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium!
-                        .apply(color: textColor),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis))
+                child: Center(
+                  child: Text(title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium!
+                          .apply(color: textColor),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis),
+                ))
           ],
         ),
       ),

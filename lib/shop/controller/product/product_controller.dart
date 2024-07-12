@@ -1,3 +1,5 @@
+import 'package:flawless_beauty/admin_panel/add_product/add_product_model.dart';
+import 'package:flawless_beauty/admin_panel/add_product/add_product_repository.dart';
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/utils/constants/enum.dart';
 import 'package:flawless_beauty/utils/popups/loader.dart';
@@ -11,12 +13,19 @@ class ProductController extends GetxController {
   final isLoading = false.obs;
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
-
+  var products = <AddProductModel>[].obs;
+  final AddProductRepository _repository = AddProductRepository();
 
   @override
   void onInit() {
     fetchFeaturedProducts();
     super.onInit();
+    featuredProducts();
+    print(fetchProducts());
+  }
+
+  Future<void> fetchProducts() async {
+    products.value = await _repository.fetchProducts();
   }
 
   void fetchFeaturedProducts() async {
@@ -42,14 +51,11 @@ class ProductController extends GetxController {
       // Fetch Product
       final products = await productRepository.getFeaturedProducts();
       return products;
-
     } catch (e) {
       TLoader.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       return [];
     }
   }
-
-
 
   // Get the Product price or Price range for variation
   String getProductPrice(ProductModel product) {
@@ -58,12 +64,14 @@ class ProductController extends GetxController {
 
     // if no variation exist , return the simple price or sale price
     if (product.productType == ProductType.single.toString()) {
-      return (product.salePrice > 0 ? product.salePrice : product.price).toString();
+      return (product.salePrice > 0 ? product.salePrice : product.price)
+          .toString();
     } else {
       // Calculate the smallest and largest Price among variation
       for (var variation in product.productVariations!) {
         // Determine the price to consider (Sale Price if Available, Otherwise regular price)
-        double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.price;
+        double priceToConsider =
+            variation.salePrice > 0.0 ? variation.salePrice : variation.price;
 
         //  Update smallest and largest price
         if (priceToConsider < smallestPrice) {
@@ -90,8 +98,9 @@ class ProductController extends GetxController {
     double percentage = ((originalPrice - salePrice) / originalPrice) * 100;
     return percentage.toStringAsFixed(0);
   }
+
   // -- Check Product Stock status
-String getProductStockStatus(int stock){
+  String getProductStockStatus(int stock) {
     return stock > 0 ? 'In Stock' : 'Out of Stock';
-}
+  }
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
 import 'package:flawless_beauty/common/styles/image/t_rounded_image.dart';
 import 'package:flawless_beauty/common/styles/product/product_cards/product_card_horizental.dart';
@@ -22,74 +20,88 @@ class SubCategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = CategoryController.instance;
-    return  Scaffold(
-      appBar:  TAppBar(title: Text(category.name),showBackArrow: true),
+    return Scaffold(
+      appBar: TAppBar(title: Text(category.name), showBackArrow: true),
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(TSize.defaultSpace),
+          padding: const EdgeInsets.all(TSize.defaultSpace),
           child: Column(
             children: [
               /// Banner
-              const TRoundedImage(width: double.infinity,imageUrl: TImage.haircutBanner,applyImageRadius: true),
+              const TRoundedImage(
+                  width: double.infinity, imageUrl: '', applyImageRadius: true),
               const SizedBox(height: TSize.spaceBtwSections),
 
               /// Sub Categories
               FutureBuilder(
                 future: controller.getSubCategories(category.id),
-                builder: (context, snapshot){
+                builder: (context, snapshot) {
                   /// Handler Loader, No Record ,OR Error Message
                   const loader = THorizentalProductShimmer();
-                  final widget = CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,loader: loader);
+                  final widget = CloudHelperFunctions.checkMultiRecordState(
+                      snapshot: snapshot, loader: loader);
 
-                  if(widget !=null) return widget;
+                  if (widget != null) return widget;
 
                   // Records Found!
                   final subCategories = snapshot.data!;
                   return ListView.builder(
-                    shrinkWrap: true,
+                      shrinkWrap: true,
                       itemCount: subCategories.length,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (_,index){
-                      final subCategory = subCategories[index];
+                      itemBuilder: (_, index) {
+                        final subCategory = subCategories[index];
                         return FutureBuilder(
-                          future: controller.getCategoryProducts(categoryId:  subCategory.id),
-                          builder: (context, snapshot) {
-                            /// Handler Loader, No Record ,OR Error Message
-                            const loader = THorizentalProductShimmer();
-                            final widget = CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,loader: loader);
+                            future: controller.getCategoryProducts(
+                                categoryId: subCategory.id),
+                            builder: (context, snapshot) {
+                              /// Handler Loader, No Record ,OR Error Message
+                              const loader = THorizentalProductShimmer();
+                              final widget =
+                                  CloudHelperFunctions.checkMultiRecordState(
+                                      snapshot: snapshot, loader: loader);
 
-                            if(widget !=null) return widget;
+                              if (widget != null) return widget;
 
-                            // Records Found!
-                            final products = snapshot.data!;
+                              // Records Found!
+                              final products = snapshot.data!;
 
-                            return Column(
-                              children: [
-                                /// Heading
-                                TSectionHeading(title: subCategory.name,onPressed: ()=> Get.to(()=> AllProducts(
-                                  title: subCategory.name,
-                                  futureModel: controller.getCategoryProducts(categoryId: subCategory.id , limit: -1),
-                                ),),
-                                ),
-                                const SizedBox(height: TSize.spaceBtwItems/2),
+                              return Column(
+                                children: [
+                                  /// Heading
+                                  TSectionHeading(
+                                    title: subCategory.name,
+                                    onPressed: () => Get.to(
+                                      () => AllProducts(
+                                        title: subCategory.name,
+                                        futureModel:
+                                            controller.getCategoryProducts(
+                                                categoryId: subCategory.id,
+                                                limit: -1),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                      height: TSize.spaceBtwItems / 2),
 
-                                SizedBox(
-                                  height: 120,
-                                  child: ListView.separated(
-                                      itemCount: products.length,
-                                      scrollDirection: Axis.horizontal,
-                                      separatorBuilder: (context,index) => const SizedBox(width: TSize.spaceBtwItems,),
-                                      itemBuilder: (context,index) =>  TProductCardHorizental(product: products[index],)),
-                                ),
-
-                              ],
-                            );
-                          }
-                        );
-
-                      }
-                  );
-
+                                  SizedBox(
+                                    height: 120,
+                                    child: ListView.separated(
+                                        itemCount: products.length,
+                                        scrollDirection: Axis.horizontal,
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                              width: TSize.spaceBtwItems,
+                                            ),
+                                        itemBuilder: (context, index) =>
+                                            TProductCardHorizental(
+                                              product: products[index],
+                                            )),
+                                  ),
+                                ],
+                              );
+                            });
+                      });
                 },
               )
             ],

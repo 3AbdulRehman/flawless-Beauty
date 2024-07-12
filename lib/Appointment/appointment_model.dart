@@ -1,14 +1,16 @@
-
-
-class AppointmentModel{
-
-  String name;
-  String profession;
+class AppointmentModel {
+  String? name;
+  String? profession;
   String? ranking;
   String? image;
-  String ? videoUrl;
+  String? videoUrl;
+  String? expertName;
 
-  AppointmentModel({required this.name, required this.profession, this.ranking,  this.image,this.videoUrl});
-
-
+  AppointmentModel(
+      {this.name,
+      this.profession,
+      this.ranking,
+      this.image,
+      this.videoUrl,
+      this.expertName});
 }

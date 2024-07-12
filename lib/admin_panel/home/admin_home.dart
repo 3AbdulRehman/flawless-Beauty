@@ -1,3 +1,4 @@
+import 'package:flawless_beauty/admin_panel/add_product/add_product.dart';
 import 'package:flawless_beauty/admin_panel/banner_view/banner_view.dart';
 import 'package:flawless_beauty/common/admin/upload_product_button.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
@@ -11,6 +12,7 @@ class AdminHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final bannerontroller = Get.put(BannerController());
     return Scaffold(
       appBar: const TAppBar(
@@ -55,10 +57,12 @@ class AdminHomeScreen extends StatelessWidget {
               height: 10,
             ),
             UploadProductButton(
-              text: 'Banner Delecte',
+              text: 'Add Product',
               leftIcon: Iconsax.document_upload,
               rightIcon: Iconsax.arrow_right_1,
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => AddProductScreen());
+              },
             ),
             const SizedBox(
               height: 10,

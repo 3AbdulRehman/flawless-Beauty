@@ -51,20 +51,27 @@ class BannerUpload extends StatelessWidget {
                   itemCount: controller.banners.length,
                   itemBuilder: (context, index) {
                     final banner = controller.banners[index];
-                    return ListTile(
-                      leading: Image.network(
-                        banner.imageUrl,
-                        width: 100,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.error),
-                      ),
-                      title: Text('Banner ${index + 1}'),
-                      trailing: IconButton(
-                        icon: const Icon(Iconsax.trash, color: Colors.red),
-                        onPressed: () => controller.deleteBanner(
-                            banner.imageUrl, banner.docId!),
-                      ),
+                    return Column(
+                      children: [
+                        ListTile(
+                          leading: Image.network(
+                            banner.imageUrl,
+                            width: 100,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.error),
+                          ),
+                          title: Text('Banner ${index + 1}'),
+                          trailing: IconButton(
+                            icon: const Icon(Iconsax.trash, color: Colors.red),
+                            onPressed: () => controller.deleteBanner(
+                                banner.imageUrl, banner.docId!),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     );
                   },
                 );

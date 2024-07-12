@@ -12,7 +12,7 @@ class TabBarSet extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelpFunction.isDarkMode(context);
-    return  Material(
+    return Material(
       color: dark ? TColors.black : TColors.white,
       child: TabBar(
         tabs: tabs,
