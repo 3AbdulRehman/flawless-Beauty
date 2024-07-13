@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddProductController extends GetxController {
+  static AddProductController get instance => Get.find();
   final AddProductRepository _repository = AddProductRepository();
   var products = <AddProductModel>[].obs;
 

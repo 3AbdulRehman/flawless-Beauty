@@ -100,15 +100,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/on_boarding_image/
-    - assets/images/banner/
-    - assets/images/brands/
-    - assets/images/products/
     - assets/images/animation/
     - assets/icons/
     - assets/icons/payment_methods/
     - assets/logos/
     - assets/images/user/
-    - assets/images/sub_categories/haircutting/
     - assets/appointment/
 
   # An image asset can refer to one or more resolution-specific "variants", see

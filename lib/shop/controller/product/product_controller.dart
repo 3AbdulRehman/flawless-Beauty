@@ -25,7 +25,14 @@ class ProductController extends GetxController {
   }
 
   Future<void> fetchProducts() async {
-    products.value = await _repository.fetchProducts();
+    try {
+      isLoading.value = true;
+      products.value = await _repository.fetchProducts();
+    } catch (e) {
+      TLoader.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void fetchFeaturedProducts() async {
