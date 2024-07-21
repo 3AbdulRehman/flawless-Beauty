@@ -1,24 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flawless_beauty/Appointment/controller/appointment_controller.dart';
-import 'package:flawless_beauty/personalization/controller/user_controller.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
+import 'package:flawless_beauty/utils/popups/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-class AppointmentForm extends StatelessWidget {
-  const AppointmentForm({
-    super.key,
-    required this.expertName,
-  });
+class AppointmentForm extends StatefulWidget {
+  const AppointmentForm({super.key});
 
-  final String expertName;
+  @override
+  State<AppointmentForm> createState() => _AppointmentFormState();
+}
+
+class _AppointmentFormState extends State<AppointmentForm> {
+  final String expertName = Get.arguments;
+  AppointmentController controller = Get.put(AppointmentController());
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<void> saveAppointment() async {
+    try {
+      Map<String, dynamic> appointment = {
+        'expertName': expertName,
+        'userName': controller.userName,
+        'useremail': controller.useremail,
+        'selectedDate':
+            DateFormat('yyyy-MM-dd').format(controller.selectedDate.value),
+        'selectedTime': controller.selectedTime.value.format(context),
+      };
+      await _firestore.collection('Appointments').add(appointment);
+      TLoader.successSnackBar(
+          title: 'Success', message: 'Appointment booked successfully');
+    } catch (e) {
+      print('error $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    AppointmentController controller = Get.put(AppointmentController());
-    final currentUser = UserController.instance;
     return AlertDialog(
       title: Column(
         children: [
@@ -56,7 +77,7 @@ class AppointmentForm extends StatelessWidget {
                 SizedBox(
                   width: 110,
                   child: Text(
-                    expertName.toString(),
+                    expertName,
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.bold),
                     maxLines: 1,
@@ -73,15 +94,13 @@ class AppointmentForm extends StatelessWidget {
                       color: Colors.red), // Set the border color here
                 ),
               ),
-              initialValue:
-                  currentUser.user.value.fullName, // Set the initial value
+              initialValue: controller.userName, // Set the initial value
               enabled: false, // Make the field read-only
             ),
             const SizedBox(height: TSize.spaceBtwInputFields),
             TextFormField(
               decoration: const InputDecoration(),
-              initialValue:
-                  currentUser.user.value.email, // Set the initial value
+              initialValue: controller.useremail, // Set the initial value
               enabled: false, // Make the field read-only
             ),
             const SizedBox(height: TSize.spaceBtwInputFields),
@@ -137,10 +156,12 @@ class AppointmentForm extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                   TColors.primary), // Change the color here
             ),
-            onPressed: () {},
+            onPressed: () {
+              saveAppointment();
+            },
             child: const Text("Submit"),
           ),
         ),
@@ -150,14 +171,10 @@ class AppointmentForm extends StatelessWidget {
 }
 
 void showAppointmentDialog(BuildContext context, String name) {
-  showDialog(
-    // barrierDismissible: false,
+  Get.dialog(
+    AppointmentForm(),
+    arguments: name, // Pass the expert name as an argument
+    barrierDismissible: false,
     barrierColor: Colors.white54,
-    context: context,
-    builder: (BuildContext context) {
-      return AppointmentForm(
-        expertName: name,
-      ); // Use the OtpDialog class
-    },
   );
 }

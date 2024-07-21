@@ -1,13 +1,26 @@
 import 'package:flawless_beauty/Appointment/appointment_model.dart';
+import 'package:flawless_beauty/personalization/controller/user_controller.dart';
 import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppointmentController extends GetxController {
+  final currentUser = UserController.instance;
+
   var selectedDate = DateTime.now().obs;
   var selectedTime = TimeOfDay.now().obs;
   RxInt selectedIndex = 0.obs;
   RxInt selectedTab = 0.obs;
+
+  get userName => currentUser.user.value.fullName;
+  get useremail => currentUser.user.value.email;
+
+  late final String expertName;
+
+  void Onit() {
+    super.onInit();
+    expertName = Get.arguments;
+  }
 
   Future<void> selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -34,23 +47,6 @@ class AppointmentController extends GetxController {
     }
   }
 
-  /// Send Email Appointment
-  // Future sendEmail() async {
-  //   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-  //   const serviceId = "service_6gy53iq";
-  //   const templateId = "template_89qmvw3";
-  //   const userId = "";
-  //   final response = await http.post(url,
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: json.encode({"service_id"}));
-  // }
-
-  // void cardClick(AppointmentModel cardClick){
-  //  // Add your backend function logic here
-  //  print('Tapped on: ${cardClick.name}');
-  //
-  //
-  // }
   List expertNameList = [
     AppointmentModel(expertName: 'Hair', image: TImage.hairStyle),
     AppointmentModel(expertName: 'Makeup', image: TImage.makeupStyle),
@@ -155,4 +151,5 @@ class AppointmentController extends GetxController {
   ].obs;
 
   ///////////// Youtube card///////////////////////////////
+  ///
 }

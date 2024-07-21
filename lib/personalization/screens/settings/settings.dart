@@ -1,3 +1,4 @@
+import 'package:flawless_beauty/Appointment/appointment_fetch_data/appointment_fetch_data.dart';
 import 'package:flawless_beauty/Appointment/controller/appointment_controller.dart';
 import 'package:flawless_beauty/admin_panel/home/admin_home.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
@@ -63,7 +64,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.safe_home,
                       title: 'My Appointment',
                       subTitle: "see your appointments",
-                      onTap: () => Get.to(() => const UserAddressScreen()),
+                      onTap: () => Get.to(() => AppointmentFetchDataScreen()),
                     ),
                     TSettingsMenuTile(
                       icon: Iconsax.bag_tick,
