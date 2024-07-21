@@ -18,25 +18,29 @@ class TSocialMediaButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          decoration: BoxDecoration(border: Border.all(color: TColors.grey),borderRadius: BorderRadius.circular(100)),
-          child: IconButton(onPressed: ()=> controller.googleSignIn(),
+          decoration: BoxDecoration(
+              border: Border.all(color: TColors.grey),
+              borderRadius: BorderRadius.circular(100)),
+          child: IconButton(
+              onPressed: () => controller.googleSignIn(),
               icon: const Image(
-            width: TSize.IconMd,
-            height: TSize.IconMd,
-            image: AssetImage(TImage.google),
-          )
-          ),
+                width: TSize.IconMd,
+                height: TSize.IconMd,
+                image: AssetImage(TImage.google),
+              )),
         ),
-        const SizedBox(width: TSize.spaceBtwItems,),
-        Container(
-          decoration: BoxDecoration(border: Border.all(color: TColors.grey),borderRadius: BorderRadius.circular(100)),
-          child: IconButton(onPressed: (){}, icon: const Image(
-            width: TSize.IconMd,
-            height: TSize.IconMd,
-            image: AssetImage(TImage.facebook),
-          )
-          ),
-        )
+        const SizedBox(
+          width: TSize.spaceBtwItems,
+        ),
+        // Container(
+        //   decoration: BoxDecoration(border: Border.all(color: TColors.grey),borderRadius: BorderRadius.circular(100)),
+        //   child: IconButton(onPressed: (){}, icon: const Image(
+        //     width: TSize.IconMd,
+        //     height: TSize.IconMd,
+        //     image: AssetImage(TImage.facebook),
+        //   )
+        //   ),
+        // )
       ],
     );
   }

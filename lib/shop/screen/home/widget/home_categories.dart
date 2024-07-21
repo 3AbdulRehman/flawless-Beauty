@@ -17,7 +17,7 @@ class THomeCategories extends StatelessWidget {
     final controller = Get.put(AppointmentController());
     final navcontroller = Get.put(NavigaitonController());
     return SizedBox(
-      height: 80,
+      height: Get.height * 0.11,
       child: ListView.builder(
           shrinkWrap: true,
           itemCount: controller.expertNameList.length,

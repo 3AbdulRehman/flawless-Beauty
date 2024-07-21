@@ -4,13 +4,15 @@ import 'package:flawless_beauty/shop/screen/home/widget/add_product_view.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_categories.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/promo_slider.dart';
+import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
+import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../common/styles/layout/grid_layout.dart';
 import '../../../common/styles/text/section_heading.dart';
-import '../../../common/styles/widget_login_signuo/Custom_shap/Conatiners/Search_container.dart';
 import '../../controller/product/product_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,26 +21,68 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
+    final dark = THelpFunction.isDarkMode(context);
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// Header
-            const TPrimaryHeaderContainer(
+            TPrimaryHeaderContainer(
               child: Column(
                 children: [
                   /// Appbar  --
-                  THomeAppBar(),
+                  const THomeAppBar(),
 
-                  SizedBox(height: TSize.spaceBtwItems),
+                  const SizedBox(height: TSize.spaceBtwItems),
 
                   /// Search Bar
-                  TSearchConatiner(text: 'Search in Store '),
-                  SizedBox(height: TSize.spaceBtwItems),
+                  //TSearchConatiner(text: 'Search in Store '),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: TextFormField(
+                      controller: controller.searchController,
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        prefixIcon: const Icon(
+                          Iconsax.search_favorite,
+                          color: TColors.white,
+                        ),
+                        hintText: 'Search',
+                        hintStyle: const TextStyle(color: Colors.white),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color:
+                                Colors.white, // White border color when enabled
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color:
+                                Colors.white, // White border color when focused
+                          ),
+                        ),
+
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0,
+                            horizontal:
+                                10.0), // Padding inside the TextFormField
+                      ),
+                      style: const TextStyle(color: Colors.white),
+                      onChanged: (value) {
+                        controller.searchQuery.value = value;
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: TSize.spaceBtwItems),
 
                   /// Categories
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: TSize.defaultSpace),
                     child: Column(
                       children: [
@@ -55,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: TSize.spaceBtwSections),
+                  const SizedBox(height: TSize.spaceBtwSections),
                 ],
               ),
             ),
@@ -82,16 +126,16 @@ class HomeScreen extends StatelessWidget {
                     if (controller.isLoading.value)
                       return TVerticalProductShimmer();
 
-                    if (controller.products.isEmpty) {
+                    if (controller.filteredProducts.isEmpty) {
                       return Center(
                           child: Text("No Data Found!",
                               style: Theme.of(context).textTheme.bodyMedium));
                     }
                     return TGridLayout(
                       crossAxisCount: 2,
-                      itemCount: controller.products.length,
-                      itemBuilder: (_, index) =>
-                          AddProductView(product: controller.products[index]),
+                      itemCount: controller.filteredProducts.length,
+                      itemBuilder: (_, index) => AddProductView(
+                          product: controller.filteredProducts[index]),
                     );
                   })
                 ],

@@ -1,7 +1,9 @@
+import 'package:flawless_beauty/Appointment/appointment_fetch_data/appointment_fetch_data.dart';
 import 'package:flawless_beauty/admin_panel/add_product/add_product.dart';
 import 'package:flawless_beauty/admin_panel/banner_view/banner_view.dart';
 import 'package:flawless_beauty/common/admin/upload_product_button.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
+import 'package:flawless_beauty/feature/authentication/screens/login/login.dart';
 import 'package:flawless_beauty/shop/controller/banner_controller.dart';
 import 'package:flawless_beauty/shop/screen/order/order.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +18,16 @@ class AdminHomeScreen extends StatelessWidget {
     // ignore: unused_local_variable
     final bannerontroller = Get.put(BannerController());
     return Scaffold(
-      appBar: const TAppBar(
-        title: Text('Admin Home'),
+      appBar: TAppBar(
+        title: const Text('Admin Home'),
         showBackArrow: false,
+        action: [
+          GestureDetector(
+              onTap: () {
+                Get.to(() => const LoginScreen());
+              },
+              child: const Icon(Iconsax.logout)),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -74,7 +83,7 @@ class AdminHomeScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Manage Mobile Application',
+                'Manage Shop Details',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
@@ -102,7 +111,9 @@ class AdminHomeScreen extends StatelessWidget {
                 text: 'Appointment Details',
                 leftIcon: Iconsax.document_upload,
                 rightIcon: Iconsax.arrow_right_1,
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => AppointmentFetchDataScreen());
+                },
               ),
               const SizedBox(
                 height: 10,

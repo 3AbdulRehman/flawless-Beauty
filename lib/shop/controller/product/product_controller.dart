@@ -3,6 +3,7 @@ import 'package:flawless_beauty/admin_panel/add_product/add_product_repository.d
 import 'package:flawless_beauty/shop/models/product_model.dart';
 import 'package:flawless_beauty/utils/constants/enum.dart';
 import 'package:flawless_beauty/utils/popups/loader.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/repositories/product/product_repository.dart';
@@ -16,22 +17,44 @@ class ProductController extends GetxController {
   var products = <AddProductModel>[].obs;
   final AddProductRepository _repository = AddProductRepository();
 
+  TextEditingController searchController = TextEditingController();
+  final RxString searchQuery = ''.obs;
+  //
+  var filteredProducts = <AddProductModel>[].obs; // Add this line
+
   @override
   void onInit() {
     fetchFeaturedProducts();
     super.onInit();
     featuredProducts();
     print(fetchProducts());
+    searchQuery.listen((query) => filterProducts(query)); // Add this line
   }
 
   Future<void> fetchProducts() async {
     try {
       isLoading.value = true;
       products.value = await _repository.fetchProducts();
+      filteredProducts.value = products; // Add this line
     } catch (e) {
       TLoader.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  // search Functionality
+  void filterProducts(String query) {
+    // Add this method
+    if (query.isEmpty) {
+      filteredProducts.value = products;
+    } else {
+      filteredProducts.value = products.where((product) {
+        return product.productName
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
+            product.brandName.toLowerCase().contains(query.toLowerCase());
+      }).toList();
     }
   }
 

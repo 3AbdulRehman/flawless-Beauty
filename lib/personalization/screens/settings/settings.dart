@@ -83,7 +83,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.sun_1,
                       title: 'Theme Mode',
                       subTitle: "Set Theme Mode",
-                      onTap: () => Get.to(() => const UserAddressScreen()),
+                      onTap: () {},
                     ),
 
                     TSettingsMenuTile(
