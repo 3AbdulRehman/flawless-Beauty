@@ -104,7 +104,7 @@ class AddProductScreen extends StatelessWidget {
                 leftIcon: Iconsax.document_upload,
                 rightIcon: Iconsax.arrow_right_1,
                 onPressed: () {
-                  Get.to(() => ProductListView());
+                  Get.to(() => const ProductListView());
                 },
               ),
             ],

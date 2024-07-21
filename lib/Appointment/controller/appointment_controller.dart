@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flawless_beauty/Appointment/appointment_model.dart';
-import 'package:flawless_beauty/Appointment/widget/youtube_play.dart';
+import 'package:flawless_beauty/utils/constants/image_String.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class AppointmentController extends GetxController {
   var selectedDate = DateTime.now().obs;
@@ -38,15 +35,15 @@ class AppointmentController extends GetxController {
   }
 
   /// Send Email Appointment
-  Future sendEmail() async {
-    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-    const serviceId = "service_6gy53iq";
-    const templateId = "template_89qmvw3";
-    const userId = "";
-    final response = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({"service_id"}));
-  }
+  // Future sendEmail() async {
+  //   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+  //   const serviceId = "service_6gy53iq";
+  //   const templateId = "template_89qmvw3";
+  //   const userId = "";
+  //   final response = await http.post(url,
+  //       headers: {'Content-Type': 'application/json'},
+  //       body: json.encode({"service_id"}));
+  // }
 
   // void cardClick(AppointmentModel cardClick){
   //  // Add your backend function logic here
@@ -55,14 +52,11 @@ class AppointmentController extends GetxController {
   //
   // }
   List expertNameList = [
-    AppointmentModel(
-        expertName: 'Hair', image: "assets/images/user/profile.png"),
-    AppointmentModel(
-        expertName: 'Makeup', image: 'assets/images/user/profile.png'),
-    AppointmentModel(
-        expertName: 'Skin', image: "assets/images/user/profile.png"),
-    AppointmentModel(
-        expertName: 'Eye Brow', image: "assets/images/user/profile.png"),
+    AppointmentModel(expertName: 'Hair', image: TImage.hairStyle),
+    AppointmentModel(expertName: 'Makeup', image: TImage.makeupStyle),
+    AppointmentModel(expertName: 'Skin', image: TImage.skinStyle),
+    AppointmentModel(expertName: 'Eye Brow', image: TImage.eyebrow),
+    AppointmentModel(expertName: 'Waxing', image: TImage.waxing),
   ];
 
   RxList<AppointmentModel> hairStyleList = <AppointmentModel>[
@@ -161,30 +155,4 @@ class AppointmentController extends GetxController {
   ].obs;
 
   ///////////// Youtube card///////////////////////////////
-  RxList<AppointmentModel> youtubeList = <AppointmentModel>[
-    AppointmentModel(
-        name: 'Emily', profession: "Lips Specialist", videoUrl: "cRedJaVd0oI"),
-    AppointmentModel(
-        name: 'kainat Faisal',
-        profession: "Skin Specialist",
-        videoUrl: "rnqidYsAntQ"),
-    AppointmentModel(
-        name: 'Emily',
-        profession: "Eye Brow Specialist",
-        videoUrl: "1ZIbfhUI0vo"),
-    AppointmentModel(
-        name: 'Lily Chen',
-        profession: "Hair Specialist",
-        videoUrl: "F09Eaqj1dbY"),
-    AppointmentModel(
-        name: 'Mary', profession: "Skin Specialist", videoUrl: "nlvyn9pcOLY"),
-    AppointmentModel(
-        name: 'Linda',
-        profession: "Makeup Specialist",
-        videoUrl: "jK30SoDM3Uc"),
-  ].obs;
-
-  void playVideo(String videoUrl) {
-    Get.to(VideoPlayerScreen(videoUrl: videoUrl));
-  }
 }

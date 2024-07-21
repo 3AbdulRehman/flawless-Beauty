@@ -9,7 +9,8 @@ import '../product_cards/product_card_vertical.dart';
 
 class TSortableProducts extends StatelessWidget {
   const TSortableProducts({
-    super.key, required this.products,
+    super.key,
+    required this.products,
   });
 
   final List<ProductModel> products;
@@ -25,14 +26,29 @@ class TSortableProducts extends StatelessWidget {
           value: controller.selectedSortOption.value,
           onChanged: (value) {
             controller.sortProducts(value!);
-           // print(controller.selectedSortOption);
+            // print(controller.selectedSortOption);
           },
-          items: ['Name','Higher Price','Lower Price','Sale','Newest','Popularity'].map((option) => DropdownMenuItem(value: option,child: Text(option))).toList(),
+          items: [
+            'Name',
+            'Higher Price',
+            'Lower Price',
+            'Sale',
+            'Newest',
+            'Popularity'
+          ]
+              .map((option) =>
+                  DropdownMenuItem(value: option, child: Text(option)))
+              .toList(),
         ),
         const SizedBox(height: TSize.spaceBtwSections),
 
         /// Products
-        Obx(()=> TGridLayout(itemCount: controller.products.length, itemBuilder: (_,index)=>  TProductCardVertical(product: controller.products[index],)))
+        Obx(() => TGridLayout(
+            crossAxisCount: 2,
+            itemCount: controller.products.length,
+            itemBuilder: (_, index) => TProductCardVertical(
+                  product: controller.products[index],
+                )))
       ],
     );
   }

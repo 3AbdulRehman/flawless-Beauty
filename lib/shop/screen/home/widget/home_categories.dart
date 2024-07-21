@@ -14,10 +14,8 @@ class THomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final categoryController = Get.put(CategoryController());
     final controller = Get.put(AppointmentController());
     final navcontroller = Get.put(NavigaitonController());
-    print(controller.hairStyleList[0].name);
     return SizedBox(
       height: 80,
       child: ListView.builder(

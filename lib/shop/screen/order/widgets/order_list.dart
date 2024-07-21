@@ -1,4 +1,3 @@
-
 import 'package:flawless_beauty/common/styles/Rounded_Conatiner/rounded_container.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
@@ -12,14 +11,16 @@ class TOrderListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelpFunction.isDarkMode(context);
-    return  ListView.separated(
+    return ListView.separated(
       shrinkWrap: true,
       itemCount: 5,
-      separatorBuilder: (_,__) => const SizedBox(height: TSize.spaceBtwItems,),
-      itemBuilder: (_,index) => TRoundedContainer(
+      separatorBuilder: (_, __) => const SizedBox(
+        height: TSize.spaceBtwItems,
+      ),
+      itemBuilder: (_, index) => TRoundedContainer(
         showBorder: true,
         padding: const EdgeInsets.all(TSize.sm),
-        backgroundColor: dark? TColors.dark : TColors.light,
+        backgroundColor: dark ? TColors.dark : TColors.light,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -27,25 +28,39 @@ class TOrderListItems extends StatelessWidget {
               children: [
                 /// Icon
                 const Icon(Iconsax.ship),
-                const SizedBox(width: TSize.spaceBtwItems /2),
+                const SizedBox(width: TSize.spaceBtwItems / 2),
+
                 /// Status & Date
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Processing",style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.primary,fontWeightDelta: 1),),
-                      Text('07 April 2024',style: Theme.of(context).textTheme.headlineMedium)
+                      Text(
+                        "",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .apply(color: TColors.primary, fontWeightDelta: 1),
+                      ),
+                      Text('',
+                          style: Theme.of(context).textTheme.headlineMedium)
                     ],
                   ),
                 ),
+
                 /// Icon Button
-                IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34,size: TSize.IconSm,))
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Iconsax.arrow_right_34,
+                      size: TSize.IconSm,
+                    ))
               ],
             ),
-      
+
             const SizedBox(height: TSize.spaceBtwItems),
-      
+
             /// Row 2
             Row(
               children: [
@@ -54,15 +69,18 @@ class TOrderListItems extends StatelessWidget {
                     children: [
                       /// Icon
                       const Icon(Iconsax.ship),
-                      const SizedBox(width: TSize.spaceBtwItems /2),
+                      const SizedBox(width: TSize.spaceBtwItems / 2),
+
                       /// Status & Date
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Order",style: Theme.of(context).textTheme.labelMedium),
-                            Text('[#256f2]',style: Theme.of(context).textTheme.titleMedium)
+                            Text("",
+                                style: Theme.of(context).textTheme.labelMedium),
+                            Text('[]',
+                                style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),
@@ -74,15 +92,18 @@ class TOrderListItems extends StatelessWidget {
                     children: [
                       /// Icon
                       const Icon(Iconsax.calendar),
-                      const SizedBox(width: TSize.spaceBtwItems /2),
+                      const SizedBox(width: TSize.spaceBtwItems / 2),
+
                       /// Status & Date
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Shipping Date",style: Theme.of(context).textTheme.labelMedium),
-                            Text('3 Feb 2024',style: Theme.of(context).textTheme.titleMedium)
+                            Text("Shipping Date",
+                                style: Theme.of(context).textTheme.labelMedium),
+                            Text('3 Feb 2024',
+                                style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),

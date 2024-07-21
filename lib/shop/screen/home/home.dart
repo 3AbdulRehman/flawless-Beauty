@@ -5,7 +5,6 @@ import 'package:flawless_beauty/shop/screen/home/widget/home_appbar.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/home_categories.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/promo_slider.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
-import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -80,15 +79,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: TSize.spaceBtwItems),
                   Obx(() {
-                    if (controller.isLoading.value) {
-                      return const TVerticalProductShimmer();
-                    }
+                    if (controller.isLoading.value)
+                      return TVerticalProductShimmer();
+
                     if (controller.products.isEmpty) {
                       return Center(
                           child: Text("No Data Found!",
                               style: Theme.of(context).textTheme.bodyMedium));
                     }
                     return TGridLayout(
+                      crossAxisCount: 2,
                       itemCount: controller.products.length,
                       itemBuilder: (_, index) =>
                           AddProductView(product: controller.products[index]),

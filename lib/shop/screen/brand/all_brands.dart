@@ -44,6 +44,7 @@ class AllBrandsScreen extends StatelessWidget {
                               .apply(color: Colors.white)));
                 }
                 return TGridLayout(
+                    crossAxisCount: 2,
                     itemCount: branController.allBrands.length,
                     mainAxisExtent: 80,
                     itemBuilder: (_, index) {

@@ -1,4 +1,3 @@
-
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
 import 'package:flawless_beauty/common/styles/icons/t_circular_icon.dart';
 import 'package:flawless_beauty/common/styles/layout/grid_layout.dart';
@@ -23,39 +22,48 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(FavouriteController());
-    return  Scaffold(
+    return Scaffold(
       appBar: TAppBar(
-        title: Text('Wishlist',style: Theme.of(context).textTheme.headlineMedium),
+        title:
+            Text('Wishlist', style: Theme.of(context).textTheme.headlineMedium),
         action: [
-          TCircularIcon(icon: Iconsax.add,onPressed: ()=> Get.to(const HomeScreen()),)
+          TCircularIcon(
+            icon: Iconsax.add,
+            onPressed: () => Get.to(const HomeScreen()),
+          )
         ],
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(TSize.defaultSpace),
+          padding: const EdgeInsets.all(TSize.defaultSpace),
           child: Obx(
-              ()=> FutureBuilder(
-              future: controller.favouriteProducts(),
-              builder: (context,snapshot) {
-                // Nothing Found Widget
-                final emptyWidget = TAnimationLoaderWidget(
+            () => FutureBuilder(
+                future: controller.favouriteProducts(),
+                builder: (context, snapshot) {
+                  // Nothing Found Widget
+                  final emptyWidget = TAnimationLoaderWidget(
                     text: 'Whoops! Wishlist is Empty....',
                     animation: TImage.deliveredEmailIllustration,
-                  showAction: true,
-                  actionText: 'Let\`s add some',
-                  onActionPressed: ()=> Get.off(()=> const NavigationMenu()),
-                );
+                    showAction: true,
+                    actionText: 'Let\`s add some',
+                    onActionPressed: () =>
+                        Get.off(() => const NavigationMenu()),
+                  );
 
-                const loader = TVerticalProductShimmer(itemCount: 6);
-                final widget = CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,loader: loader,nothingFound: emptyWidget);
-                if(widget != null) return widget;
+                  const loader = TVerticalProductShimmer(itemCount: 6);
+                  final widget = CloudHelperFunctions.checkMultiRecordState(
+                      snapshot: snapshot,
+                      loader: loader,
+                      nothingFound: emptyWidget);
+                  if (widget != null) return widget;
 
-                final products = snapshot.data!;
-               return TGridLayout(itemCount: products.length,
-                    itemBuilder: (_, index) =>
-                        TProductCardVertical(product: products[index]));
-              }
-            ),
+                  final products = snapshot.data!;
+                  return TGridLayout(
+                      crossAxisCount: 2,
+                      itemCount: products.length,
+                      itemBuilder: (_, index) =>
+                          TProductCardVertical(product: products[index]));
+                }),
           ),
         ),
       ),

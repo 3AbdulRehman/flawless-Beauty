@@ -1,7 +1,6 @@
+import 'package:flawless_beauty/expert_video/expert_video.dart';
 import 'package:flawless_beauty/personalization/screens/settings/settings.dart';
 import 'package:flawless_beauty/shop/screen/home/home.dart';
-import 'package:flawless_beauty/shop/screen/store/store.dart';
-import 'package:flawless_beauty/shop/screen/wishlist/wishlist.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +31,11 @@ class NavigationMenu extends StatelessWidget {
             destinations: const [
               NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
               NavigationDestination(
-                  icon: Icon(Iconsax.calendar), label: 'Appointment',),
-              NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
+                icon: Icon(Iconsax.calendar),
+                label: 'Appointment',
+              ),
               NavigationDestination(
-                  icon: Icon(Iconsax.heart), label: 'WishList'),
+                  icon: Icon(Iconsax.video4), label: 'Expert Video'),
               NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
             ],
           ),
@@ -50,8 +50,7 @@ class NavigaitonController extends GetxController {
   final screen = [
     const HomeScreen(),
     const AppointmentScreen(),
-    const Store(),
-    const FavoriteScreen(),
+    const ExpertVideo(),
     const SettingsScreen(),
   ];
 }

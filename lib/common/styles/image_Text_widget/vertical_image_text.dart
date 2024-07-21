@@ -40,8 +40,8 @@ class TVerticalImageText extends StatelessWidget {
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
               overlayColor: THelpFunction.isDarkMode(context)
-                  ? TColors.light
-                  : TColors.dark,
+                  ? TColors.white
+                  : TColors.primary,
             ),
             const SizedBox(height: TSize.spaceBtwItems / 2),
             SizedBox(

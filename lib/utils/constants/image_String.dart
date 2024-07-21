@@ -32,12 +32,6 @@ class TImage {
   static const String docerAnimation =
       "assets/images/animation/screen_loader.json";
 
-  /// Popular Category Icon Available in Home Dashboard
-  static const String haircut = "assets/icons/haircut.png";
-  static const String hairdryer = "assets/icons/hairdryer.png";
-  static const String facial = "assets/icons/facial-foam.png";
-  static const String makeup = "assets/icons/cosmetics.png";
-
   ///Brands Image in Store
   static const String brand1 = "assets/images/brands/Loreal.png";
 
@@ -59,5 +53,14 @@ class TImage {
   static const String successfullyPaymentIcon =
       "assets/icons/payment_methods/successpayment.png";
 
-  ////hairCutting class
+  // Appointment in Home
+  static const String hairStyle =
+      "assets/appointment/appointment_icon/hair-cutting.png";
+  static const String makeupStyle =
+      "assets/appointment/appointment_icon/make-up (1).png";
+  static const String skinStyle =
+      "assets/appointment/appointment_icon/skin-care.png";
+  static const String eyebrow =
+      'assets/appointment/appointment_icon/eyelash.png';
+  static const String waxing = 'assets/appointment/appointment_icon/waxing.png';
 }

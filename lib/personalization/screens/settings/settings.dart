@@ -1,4 +1,3 @@
-import 'package:flawless_beauty/Appointment/appointment.dart';
 import 'package:flawless_beauty/Appointment/controller/appointment_controller.dart';
 import 'package:flawless_beauty/admin_panel/home/admin_home.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
@@ -24,6 +23,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AuthenticationRepository());
     final appcontroller = Get.put(AppointmentController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -56,78 +56,41 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     /// Account Settings
                     const TSectionHeading(
-                        title: 'Account Settings', showActionButton: false),
+                        title: 'App Details', showActionButton: false),
                     const SizedBox(height: TSize.spaceBtwItems),
 
                     TSettingsMenuTile(
                       icon: Iconsax.safe_home,
-                      title: 'My Addresses',
-                      subTitle: "Set shopping delivery address",
+                      title: 'My Appointment',
+                      subTitle: "see your appointments",
                       onTap: () => Get.to(() => const UserAddressScreen()),
-                    ),
-                    TSettingsMenuTile(
-                      icon: Iconsax.shopping_cart,
-                      title: 'My Cart',
-                      subTitle: "Add remove Products and move to checkout",
-                      onTap: () {},
                     ),
                     TSettingsMenuTile(
                       icon: Iconsax.bag_tick,
                       title: 'My Order',
-                      subTitle: "In-Progress and Complete Order ",
+                      subTitle: "Order Details and Status",
                       onTap: () => Get.to(() => const OrderScreen()),
-                    ),
-                    TSettingsMenuTile(
-                      icon: Iconsax.bank,
-                      title: 'Bank Account',
-                      subTitle: "Withdraw Balance to Registered Bank Account",
-                      onTap: () {},
-                    ),
-                    TSettingsMenuTile(
-                      icon: Iconsax.discount_shape,
-                      title: 'My Coupons',
-                      subTitle: "List of all the Discount coupons",
-                      onTap: () {},
-                    ),
-                    TSettingsMenuTile(
-                      icon: Iconsax.notification,
-                      title: 'Notification',
-                      subTitle: "Set any kind of notification message",
-                      onTap: () {},
-                    ),
-                    TSettingsMenuTile(
-                      icon: Iconsax.security_card,
-                      title: 'Account Privacy',
-                      subTitle: "Manage Data usage and Connected account",
-                      onTap: () {},
                     ),
 
                     /// App Settings
                     const SizedBox(height: TSize.spaceBtwSections),
+
                     const TSectionHeading(
                         title: 'App Settings', showActionButton: false),
                     const SizedBox(height: TSize.spaceBtwItems),
+                    TSettingsMenuTile(
+                      icon: Iconsax.sun_1,
+                      title: 'Theme Mode',
+                      subTitle: "Set Theme Mode",
+                      onTap: () => Get.to(() => const UserAddressScreen()),
+                    ),
+
                     TSettingsMenuTile(
                       icon: Iconsax.document_upload,
                       title: 'Load Data',
                       subTitle: "Upload Data to your Cloud Firebase",
                       onTap: () => Get.to(const AdminHomeScreen()),
                     ),
-                    TSettingsMenuTile(
-                        icon: Iconsax.location,
-                        title: 'Geolocation',
-                        subTitle: "Set Recommendation base on location",
-                        trailing: Switch(value: true, onChanged: (value) {})),
-                    TSettingsMenuTile(
-                        icon: Iconsax.security_user,
-                        title: 'Safe Mode',
-                        subTitle: "Search result is safe for all age",
-                        trailing: Switch(value: false, onChanged: (value) {})),
-                    TSettingsMenuTile(
-                        icon: Iconsax.image,
-                        title: 'HD Image Quality',
-                        subTitle: "Set image quality to be seen",
-                        trailing: Switch(value: false, onChanged: (value) {})),
 
                     const SizedBox(height: TSize.spaceBtwSections),
                     SizedBox(
