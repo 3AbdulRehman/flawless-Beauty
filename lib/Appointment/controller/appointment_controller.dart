@@ -142,7 +142,7 @@ class AppointmentController extends GetxController {
         name: 'Sarah Taylor',
         profession: "Waxing Specialist",
         ranking: '4.7',
-        image: 'assets/appointment/waxing_expert_1.png'),
+        image: 'assets/appointment/waxing_expert1.png'),
     AppointmentModel(
         name: 'Nadia Ali',
         profession: "Waxing Specialist",

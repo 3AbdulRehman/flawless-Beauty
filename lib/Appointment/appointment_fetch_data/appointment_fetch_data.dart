@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:flawless_beauty/Appointment/appointment_fetch_data/controller/appointment_fetch_controller.dart';
 import 'package:flawless_beauty/common/styles/Rounded_Conatiner/rounded_container.dart';
 import 'package:flawless_beauty/common/styles/appbar/appbar.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
 import 'package:flawless_beauty/utils/helper/help_function.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 class AppointmentFetchDataScreen extends StatelessWidget {
   @override
@@ -23,21 +24,41 @@ class AppointmentFetchDataScreen extends StatelessWidget {
       body: Obx(() {
         if (controller.appointments.isEmpty) {
           return Center(child: CircularProgressIndicator());
-        } else {
-          return ListView.builder(
-            itemCount: controller.appointments.length,
-            itemBuilder: (context, index) {
-              final appointment = controller.appointments[index];
-              // return ListTile(
-              //   title: Text(appointment['expertName']),
-              //   subtitle: Text(
-              //     'Name: ${appointment['userName']}\n'
-              //     'email: ${appointment['useremail']}\n'
-              //     'Date: ${appointment['selectedDate']}\n'
-              //     'Time: ${appointment['selectedTime']}',
-              //   ),
-              // );
-              return Column(
+        }
+        return ListView.builder(
+          itemCount: controller.appointments.length,
+          itemBuilder: (context, index) {
+            final appointment = controller.appointments[index];
+
+            final expertName = appointment['expertName'] ?? 'N/A';
+            final userName = appointment['userName'] ?? 'N/A';
+            final selectedDate = appointment['selectedDate'] ?? 'N/A';
+            final selectedTime = appointment['selectedTime'] ?? 'N/A';
+            final userEmail = appointment['useremail'] ?? 'N/A';
+            final id = appointment['id'];
+
+            return Slidable(
+              key: ValueKey(id),
+              endActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                children: [
+                  SlidableAction(
+                    borderRadius: BorderRadius.circular(15),
+                    onPressed: (context) {
+                      if (id != null) {
+                        controller.deleteAppointment(id);
+                      } else {
+                        print('Error: Appointment ID is null');
+                      }
+                    },
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    icon: Icons.delete,
+                    label: 'Delete',
+                  ),
+                ],
+              ),
+              child: Column(
                 children: [
                   TRoundedContainer(
                     showBorder: true,
@@ -51,26 +72,23 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                             Expanded(
                               child: Row(
                                 children: [
-                                  /// Icon
                                   const Icon(Iconsax.user),
                                   const SizedBox(
                                       width: TSize.spaceBtwItems / 2),
-
-                                  /// Status & Date
                                   Expanded(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text("Exper Name",
+                                        Text("Expert Name",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium),
-                                        Text(appointment['expertName'],
+                                        Text(expertName,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleMedium)
+                                                .titleMedium),
                                       ],
                                     ),
                                   ),
@@ -80,30 +98,25 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                             Expanded(
                               child: Row(
                                 children: [
-                                  /// Icon
                                   const Icon(Iconsax.book),
                                   const SizedBox(width: TSize.spaceBtwItems),
-
-                                  /// Status & Date
                                   Expanded(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text("Book person Name",
+                                        Text("Booked by",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium),
-                                        Text(
-                                          appointment['userName'],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .apply(
-                                                  color: TColors.black,
-                                                  fontWeightDelta: 2),
-                                        ),
+                                        Text(userName,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge!
+                                                .apply(
+                                                    color: TColors.black,
+                                                    fontWeightDelta: 2)),
                                       ],
                                     ),
                                   ),
@@ -112,21 +125,15 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: TSize.spaceBtwItems),
-
-                        /// Row 2
                         Row(
                           children: [
                             Expanded(
                               child: Row(
                                 children: [
-                                  /// Icon
                                   const Icon(Iconsax.calendar),
                                   const SizedBox(
                                       width: TSize.spaceBtwItems / 2),
-
-                                  /// Status & Date
                                   Expanded(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -137,10 +144,10 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium),
-                                        Text(appointment['selectedDate'],
+                                        Text(selectedDate,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleMedium)
+                                                .titleMedium),
                                       ],
                                     ),
                                   ),
@@ -150,11 +157,8 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                             Expanded(
                               child: Row(
                                 children: [
-                                  /// Icon
                                   const Icon(Iconsax.clock),
                                   const SizedBox(width: TSize.spaceBtwItems),
-
-                                  /// Status & Date
                                   Expanded(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -165,15 +169,13 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium),
-                                        Text(
-                                          appointment['selectedTime'],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .apply(
-                                                  color: TColors.black,
-                                                  fontWeightDelta: 2),
-                                        ),
+                                        Text(selectedTime,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!
+                                                .apply(
+                                                    color: TColors.black,
+                                                    fontWeightDelta: 2)),
                                       ],
                                     ),
                                   ),
@@ -182,11 +184,9 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: TSize.spaceBtwItems / 2,
-                        ),
+                        const SizedBox(height: TSize.spaceBtwItems / 2),
                         Text(
-                          "Email :${appointment['useremail']}",
+                          "Email: $userEmail",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
@@ -195,14 +195,12 @@ class AppointmentFetchDataScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: TSize.spaceBtwItems / 2,
-                  )
+                  const SizedBox(height: TSize.spaceBtwItems / 2),
                 ],
-              );
-            },
-          );
-        }
+              ),
+            );
+          },
+        );
       }),
     );
   }

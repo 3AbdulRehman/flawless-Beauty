@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flawless_beauty/utils/popups/loader.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AppointmentFetchDataController extends GetxController {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  RxList<Map<String, dynamic>> appointments = <Map<String, dynamic>>[].obs;
+  var appointments = <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {
@@ -14,11 +13,36 @@ class AppointmentFetchDataController extends GetxController {
 
   Future<void> fetchAppointments() async {
     try {
-      final snapshot = await _firestore.collection('Appointments').get();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('Appointments').get();
       final docs = snapshot.docs;
-      appointments.value = docs.map((doc) => doc.data()).toList();
+      appointments.value = docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id; // Ensure 'id' is included
+        return data;
+      }).toList();
     } catch (e) {
       print('Error fetching appointments: $e');
+    }
+  }
+
+  Future<void> deleteAppointment(String id) async {
+    if (id == null || id.isEmpty) {
+      print('Error: Appointment ID is null or empty');
+      return;
+    }
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('Appointments')
+          .doc(id)
+          .delete();
+      print('Successfully deleted appointment with ID: $id');
+      // Optionally, remove from local list
+      appointments.removeWhere((appointment) => appointment['id'] == id);
+      TLoader.successSnackBar(title: 'Success', message: 'Appointment deleted');
+    } catch (e) {
+      print('Failed to delete appointment: $e');
     }
   }
 }

@@ -86,11 +86,31 @@ class SettingsScreen extends StatelessWidget {
                       onTap: () {},
                     ),
 
-                    TSettingsMenuTile(
-                      icon: Iconsax.document_upload,
-                      title: 'Load Data',
-                      subTitle: "Upload Data to your Cloud Firebase",
-                      onTap: () => Get.to(const AdminHomeScreen()),
+                    // TSettingsMenuTile(
+                    //   icon: Iconsax.document_upload,
+                    //   title: 'Load Data',
+                    //   subTitle: "Upload Data to your Cloud Firebase",
+                    //   onTap: () => Get.to(const AdminHomeScreen()),
+                    // ),
+                    ListTile(
+                      leading: const Icon(Iconsax.sun_1,
+                          size: 28, color: TColors.primary),
+                      title: Text("Theme Mode",
+                          style: Theme.of(context).textTheme.titleMedium),
+                      subtitle: Text("Set Theme Mode",
+                          style: Theme.of(context).textTheme.labelMedium),
+                      trailing: Switch(
+                        value: Theme.of(context).brightness == Brightness.dark,
+                        onChanged: (value) {
+                          if (value) {
+                            Get.changeThemeMode(ThemeMode.dark);
+                          } else {
+                            Get.changeThemeMode(ThemeMode.light);
+                          }
+                        },
+                        inactiveThumbColor: TColors.primary,
+                        activeColor: TColors.primary,
+                      ),
                     ),
 
                     const SizedBox(height: TSize.spaceBtwSections),

@@ -27,7 +27,7 @@ class AddProductView extends StatelessWidget {
     return Container(
       //height: Get.height * 0.55,
       //width: Get.width * 0.45,
-      padding: const EdgeInsets.all(1),
+      padding: const EdgeInsets.all(0),
       decoration: BoxDecoration(
         boxShadow: [TShadowStyle.verticalProductShadow],
         borderRadius: BorderRadius.circular(TSize.productImageRadius),
@@ -37,7 +37,7 @@ class AddProductView extends StatelessWidget {
         children: [
           /// Thumbnail , WishList Button, discount Tage
           TRoundedContainer(
-            height: Get.height * 0.21,
+            height: Get.height * 0.20,
             //width: 180,
             padding: const EdgeInsets.all(TSize.sm),
             backgroundColor: dark ? TColors.dark : TColors.light,

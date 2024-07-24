@@ -6,7 +6,6 @@ import 'package:flawless_beauty/shop/screen/home/widget/home_categories.dart';
 import 'package:flawless_beauty/shop/screen/home/widget/promo_slider.dart';
 import 'package:flawless_beauty/utils/constants/constant.dart';
 import 'package:flawless_beauty/utils/constants/size.dart';
-import 'package:flawless_beauty/utils/helper/help_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -21,7 +20,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
-    final dark = THelpFunction.isDarkMode(context);
 
     return Scaffold(
       body: SingleChildScrollView(

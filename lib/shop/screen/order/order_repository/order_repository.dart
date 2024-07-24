@@ -15,21 +15,12 @@ class OrderRepository {
       throw Exception('Failed to fetch products: $e');
     }
   }
+
+  Future<void> deleteProduct(String id) async {
+    try {
+      await _firestore.collection('Buyer').doc(id).delete();
+    } catch (e) {
+      throw Exception('Failed to delete product: $e');
+    }
+  }
 }
-// Future<List<BannerModel>> fetchBanners() async {
-//     try {
-//       final result = await _db
-//           .collection('Banners')
-//           .where('Active', isEqualTo: true)
-//           .get();
-//       return result.docs
-//           .map((documentSnapshot) => BannerModel.fromSnapshot(documentSnapshot))
-//           .toList();
-//     } on FirebaseException catch (e) {
-//       throw TFirebaseException(e.code).message;
-//     } on PlatformException catch (e) {
-//       throw TPlatformException(e.code).message;
-//     } catch (e) {
-//       throw 'Something went wrong. Please try again.';
-//     }
-//   }

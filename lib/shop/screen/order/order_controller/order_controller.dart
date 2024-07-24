@@ -1,5 +1,6 @@
 import 'package:flawless_beauty/shop/screen/home/widget/model/form_buy_product_model.dart';
 import 'package:flawless_beauty/shop/screen/order/order_repository/order_repository.dart';
+import 'package:flawless_beauty/utils/popups/loader.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
@@ -23,6 +24,17 @@ class OrderController extends GetxController {
       print("Failed to fetch products: $e");
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> deleteProduct(String id) async {
+    try {
+      await _repository.deleteProduct(id);
+      products.removeWhere((product) => product.id == id);
+      TLoader.successSnackBar(
+          title: 'Success', message: 'Product deleted successfully');
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to delete product');
     }
   }
 }
